@@ -27,7 +27,9 @@ plot_word <- function(input, output, session) {
   
   word_runtime <-
     eventReactive(input$refresh_plot, {
-      (plotte_word(input$word_search, dfm_data(), input$intervall_words))
+      if(existsFunction("dfm_data")==TRUE){
+      (plotte_word(input$word_search, dfm_data(), input$intervall_words))}
+      else{shinyalert(title = "No Dataset ",text = "Please select a dataset",showConfirmButton = TRUE, timer = 5000)}
     })
   output$bar_chart_word <- renderPlotly({
     word_runtime()
