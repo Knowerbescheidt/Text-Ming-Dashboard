@@ -24,7 +24,7 @@ plot_DicUI <- function(id, dictionary_id) {
     selectInput(
       ns("dictio"),
       label = "Dictionary",
-      choices = c("Drücken sie Update")
+      choices = c("Dr?cken sie Update")
     ),
     
     selectInput(
@@ -45,7 +45,6 @@ plot_DicUI <- function(id, dictionary_id) {
 }
 
 plot_Dic <- function(input, output, session) {
-  
   # observeEvent(input$save_dic, {
   #   write.xlsx2(
   #     hot_to_r(input$display_dic),
@@ -57,26 +56,26 @@ plot_Dic <- function(input, output, session) {
   #     col.names = FALSE
   #   )
   # })
- # if the selected changes then the data needs to be updated using event Reactive
-  # display the Dictionary-------------------------- 
+  # if the selected changes then the data needs to be updated using event Reactive
+  # display the Dictionary--------------------------
   
-#   dic_view <-
-#     eventReactive(input$show_dic, {
-#       rhandsontable(read.xlsx(
-#         paste0(
-#           "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
-#           as.character(input$dictio)
-#         ),
-#         sheetIndex = 1,
-#         header = FALSE
-#       ),
-#       colHeaders = c("Words"))
-#     })
-#   
-# output$display_dic <- renderRHandsontable(dic_view())
+  #   dic_view <-
+  #     eventReactive(input$show_dic, {
+  #       rhandsontable(read.xlsx(
+  #         paste0(
+  #           "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
+  #           as.character(input$dictio)
+  #         ),
+  #         sheetIndex = 1,
+  #         header = FALSE
+  #       ),
+  #       colHeaders = c("Words"))
+  #     })
+  #
+  # output$display_dic <- renderRHandsontable(dic_view())
   
   
-#Refresh list of dictionaries and names---------------------------
+  #Refresh list of dictionaries and names---------------------------
   vec_name_obj <- eventReactive(input$refresh_dictionaries, {
     liste <-
       import_excels(list.files(
@@ -90,7 +89,7 @@ plot_Dic <- function(input, output, session) {
     }
     return(vec_name)
   })
-
+  
   observeEvent(input$refresh_dictionaries,
                {
                  updateSelectInput(
@@ -100,7 +99,7 @@ plot_Dic <- function(input, output, session) {
                    choices = vec_name_obj()
                  )
                })
-
+  
   #refresh dictionaries Error---------------
   observeEvent(input$refresh, {
     if (file.exists(
@@ -114,7 +113,7 @@ plot_Dic <- function(input, output, session) {
                  timer = 2000)
     }
   })
-
+  
   # #delete Dictionaries-----------------------
   # observeEvent(input$delete_dictionary, {
   #   if (file.exists(
@@ -131,11 +130,11 @@ plot_Dic <- function(input, output, session) {
   #     )
   #   }
   #   if (file.exists(paste0("/Daten/Dictionaries/", as.character(input$dictio))) == FALSE) {
-  #     print("Wurde gelöscht")
+  #     print("Wurde gel?scht")
   #   }
   # })
   
-  #Data für barchart------------------------
+  #Data f?r barchart------------------------
   dictionary_runtime <-
     eventReactive(input$refresh, {
       plotte_dictio(
@@ -157,5 +156,3 @@ plot_Dic <- function(input, output, session) {
     }
   })
 }
-
-

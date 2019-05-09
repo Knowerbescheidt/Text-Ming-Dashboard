@@ -11,69 +11,66 @@ source(paste0(pfad, "/Module/", "Plot_Word_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "save_Dic_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "view_data_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "select_dataset_modul.R"), local = TRUE)
+source(paste0(pfad, "/Module/", "Alter_Dic_modul.R"), local = TRUE)
 
 
 ui <- dashboardPage(
   dashboardHeader(title = "Mining Your Comments"),
   dashboardSidebar(sidebarMenu(
     menuItem(
-      "Plot Single Word",
+      "Timeseries Words",
       tabName = "plot_words",
       icon = icon("plot_words")
     ),
     menuItem(
-      "Plot Dictionaries",
+      "Timeseries Dictionaries",
       tabName = "plot_dics",
       icon = icon("plot_dics")
     ),
-    menuItem(
-      "Data",
-      tabName = "data",
-      icon = icon("data")
-    ),
-    menuItem(
-      "Dataset",
-      tabName = "dataset",
-      icon = icon("dataset")
-    )
+    menuItem("Data",
+             tabName = "data",
+             icon = icon("data"))
   )),
   dashboardBody(tabItems(
     tabItem(tabName = "plot_words",
-            fluidRow(box(
-              title = "Plot Word",
-              plot_wordUI("two")
-            ),box(title = "Select your data",
-              select_datasetUI("two")
-            ))
-            ),
+            fluidRow(
+              box(title = "Plot Word",
+                  plot_wordUI("one")),
+              box(title = "Select your data",
+                  select_datasetUI("one"))
+            )),
     tabItem(tabName = "data",
             fluidRow(box(
               title = "Data table",
               view_dataUI("one")
             ))),
-    # tabItem(tabName = "dataset",
-    #         fluidRow(box(
-    #           title = "Select data set",
-    #           select_datasetUI("two")
-    #         ))),
     tabItem(
       tabName = "plot_dics",
       box(title =  "Change and Plot Dictionary",
           plot_DicUI("one")),
-      box(title = "Create Dictionary",
-          save_DicUI("one"))
+      box(
+        title = "Create Dictionary",
+        save_DicUI("one"),
+        collapsible = TRUE,
+        collapsed = TRUE
+      ),
+      box(
+        title = "Alter a dictionary",
+        alter_dictioUI("two"),
+        collapsible = TRUE
+      )
     )
   ))
 )
 
 
 server <- function(input, output) {
-
   callModule(plot_Dic, "one")
-  callModule(plot_word, "two")
+  callModule(plot_word, "one")
   callModule(save_Dic, "one")
   callModule(view_data, "one")
-  callModule(select_dataset, "two")
+  callModule(select_dataset, "one")
+  callModule(alter_dictio, "two")
 }
 
 shinyApp(ui = ui, server = server)

@@ -1,6 +1,20 @@
 require(shiny)
-source(paste0("C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/", "PlotteWord",".R"), local = TRUE)
-source(paste0("C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/", "Data_prep",".R"), local = TRUE)
+source(
+  paste0(
+    "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
+    "PlotteWord",
+    ".R"
+  ),
+  local = TRUE
+)
+source(
+  paste0(
+    "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
+    "Data_prep",
+    ".R"
+  ),
+  local = TRUE
+)
 
 plot_wordUI <- function(id) {
   ns <- NS(id)
@@ -20,16 +34,23 @@ plot_wordUI <- function(id) {
     actionButton(ns("refresh_plot"), label = "Update Plot"),
     plotlyOutput(ns("bar_chart_word"))
     
- )
+  )
 }
 
 plot_word <- function(input, output, session) {
-  
   word_runtime <-
     eventReactive(input$refresh_plot, {
-      if(existsFunction("dfm_data")==TRUE){
-      (plotte_word(input$word_search, dfm_data(), input$intervall_words))}
-      else{shinyalert(title = "No Dataset ",text = "Please select a dataset",showConfirmButton = TRUE, timer = 5000)}
+      if (existsFunction("dfm_data") == TRUE) {
+        (plotte_word(input$word_search, dfm_data(), input$intervall_words))
+      }
+      else{
+        shinyalert(
+          title = "No Dataset ",
+          text = "Please select a dataset",
+          showConfirmButton = TRUE,
+          timer = 5000
+        )
+      }
     })
   output$bar_chart_word <- renderPlotly({
     word_runtime()

@@ -4,19 +4,18 @@ alter_dictioUI <- function(id, dictionary_id) {
     selectInput(
       ns("dictio"),
       label = "Dictionary",
-      choices = c("Drücken sie Update")
+      choices = c("Press Update")
     ),
     actionButton(ns("refresh_dictionaries"), label = "Update Dictionaries"),
     actionButton(ns("delete_dictionary"), label = "Delete Dictionaries"),
     actionButton(ns("show_dic"), label = "View Dictionary"),
     actionButton(ns("save_dic"), label = "Save Changes"),
-    box(rHandsontableOutput(ns("display_dic"), width = 700),collapsible = TRUE)
+    box(rHandsontableOutput(ns("display_dic"), width = 700), collapsible = TRUE)
     
   )
 }
 
 alter_dictio <- function(input, output, session) {
-
   #Saving Dictionary----------
   observeEvent(input$save_dic, {
     write.xlsx2(
@@ -106,4 +105,4 @@ alter_dictio <- function(input, output, session) {
   
   
   
-  }
+}
