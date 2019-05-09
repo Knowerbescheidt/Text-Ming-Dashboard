@@ -73,8 +73,6 @@ server <- function(input, output) {
   callModule(plot_word, "two")
   callModule(save_Dic, "one")
   callModule(view_data, "one")
- # da diese FUnktion auch in anderem Modul genutzt wird muss es eine eigene id bekommen
- # callModule(select_dataset, "two")
   callModule(select_dataset, "two")
 }
 

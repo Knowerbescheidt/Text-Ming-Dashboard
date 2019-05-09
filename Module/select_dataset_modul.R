@@ -1,3 +1,5 @@
+source("Funktionen/Data_prep.R", local = TRUE)
+
 
 
 select_datasetUI <- function(id) {
@@ -22,13 +24,19 @@ select_dataset <-  function(input, output, session) {
       )
     )
   })
+  observeEvent(input$select_data, {
+    #assign dfm_data zu dfm_data
+    assign(x = "dfm_data",
+           value = dfm_data,
+           envir = globalenv())
+  })
+  #refresh names-----------
   
   names_vec <- eventReactive(input$refresh_data, {
     liste <-
       list.files("C:/Users/Jani/Documents/R Hausaufgabe/Daten/Amazon_data/")
     return(liste)
   })
-  
   observeEvent(input$refresh_data,
                {
                  updateSelectInput(
@@ -41,7 +49,7 @@ select_dataset <-  function(input, output, session) {
   
 }
 
-#Altes Code------------------
+#Alter Code------------------
 #
 #
 # select_datasetUI <- function(id) {
