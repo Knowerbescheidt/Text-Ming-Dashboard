@@ -2,12 +2,12 @@ require(gdata)
 require(xlsx)
 options(stringsAsFactors = F)
 
-import_excel <- function(dicname) {
+import_excel <- function(filename) {
   data_excel <-
     read.xlsx2(
       file = paste0(
         "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
-        dicname
+        filename
       ),
       sheetIndex = 1,
       as.data.frame = TRUE,

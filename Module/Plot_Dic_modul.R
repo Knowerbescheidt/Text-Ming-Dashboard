@@ -24,7 +24,7 @@ plot_DicUI <- function(id, dictionary_id) {
     selectInput(
       ns("dictio"),
       label = "Dictionary",
-      choices = c("Dr?cken sie Update")
+      choices = c("Press Update")
     ),
     
     selectInput(
@@ -34,47 +34,12 @@ plot_DicUI <- function(id, dictionary_id) {
     ),
     actionButton(ns("refresh"), label = "Update Plot"),
     actionButton(ns("refresh_dictionaries"), label = "Update Dictionaries"),
-    # actionButton(ns("delete_dictionary"), label = "Delete Dictionaries"),
-    # actionButton(ns("show_dic"), label = "View Dictionary"),
-    # actionButton(ns("save_dic"), label = "Save Changes"),
-    # rHandsontableOutput(ns("display_dic"), width = 700),
-    
     plotlyOutput(ns("bar_chart_dict")),
     useShinyalert()
   )
 }
 
 plot_Dic <- function(input, output, session) {
-  # observeEvent(input$save_dic, {
-  #   write.xlsx2(
-  #     hot_to_r(input$display_dic),
-  #     file = paste0(
-  #       "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
-  #       input$dictio
-  #     ),
-  #     row.names = FALSE,
-  #     col.names = FALSE
-  #   )
-  # })
-  # if the selected changes then the data needs to be updated using event Reactive
-  # display the Dictionary--------------------------
-  
-  #   dic_view <-
-  #     eventReactive(input$show_dic, {
-  #       rhandsontable(read.xlsx(
-  #         paste0(
-  #           "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
-  #           as.character(input$dictio)
-  #         ),
-  #         sheetIndex = 1,
-  #         header = FALSE
-  #       ),
-  #       colHeaders = c("Words"))
-  #     })
-  #
-  # output$display_dic <- renderRHandsontable(dic_view())
-  
-  
   #Refresh list of dictionaries and names---------------------------
   vec_name_obj <- eventReactive(input$refresh_dictionaries, {
     liste <-
@@ -113,26 +78,6 @@ plot_Dic <- function(input, output, session) {
                  timer = 2000)
     }
   })
-  
-  # #delete Dictionaries-----------------------
-  # observeEvent(input$delete_dictionary, {
-  #   if (file.exists(
-  #     paste0(
-  #       "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
-  #       as.character(input$dictio)
-  #     )
-  #   ) == TRUE) {
-  #     file.remove(
-  #       paste0(
-  #         "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
-  #         as.character(input$dictio)
-  #       )
-  #     )
-  #   }
-  #   if (file.exists(paste0("/Daten/Dictionaries/", as.character(input$dictio))) == FALSE) {
-  #     print("Wurde gel?scht")
-  #   }
-  # })
   
   #Data f?r barchart------------------------
   dictionary_runtime <-

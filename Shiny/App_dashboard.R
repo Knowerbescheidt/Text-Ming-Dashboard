@@ -12,6 +12,7 @@ source(paste0(pfad, "/Module/", "save_Dic_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "view_data_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "select_dataset_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "Alter_Dic_modul.R"), local = TRUE)
+source(paste0(pfad, "/Module/", "Plot2_Dics_modul.R"), local = TRUE)
 
 
 ui <- dashboardPage(
@@ -26,6 +27,11 @@ ui <- dashboardPage(
       "Timeseries Dictionaries",
       tabName = "plot_dics",
       icon = icon("plot_dics")
+    ),
+    menuItem(
+      "Compare Dictionaries",
+      tabName = "plot_2dics",
+      icon = icon("plot_2dics")
     ),
     menuItem("Data",
              tabName = "data",
@@ -43,6 +49,11 @@ ui <- dashboardPage(
             fluidRow(box(
               title = "Data table",
               view_dataUI("one")
+            ))),
+    tabItem(tabName = "plot_2dics",
+            fluidRow(box(
+              title = "Plot 2 Dictionaries",
+              plot_2DicUI("one")
             ))),
     tabItem(
       tabName = "plot_dics",
@@ -71,6 +82,7 @@ server <- function(input, output) {
   callModule(view_data, "one")
   callModule(select_dataset, "one")
   callModule(alter_dictio, "two")
+  callModule(plot_2Dic, "one")
 }
 
 shinyApp(ui = ui, server = server)
