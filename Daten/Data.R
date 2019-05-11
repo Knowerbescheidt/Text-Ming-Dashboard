@@ -10,7 +10,10 @@ require(ggplot2)
 require(plotly)
 
 
-data_amazon <- stream_in("C:/Users/Jani/Documents/R Hausaufgabe/Daten/Amazon_data/Musical_Instruments_5.json")
+data_amazon <-
+  stream_in(
+    "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Amazon_data/Musical_Instruments_5.json"
+  )
 
 #Umwandlung der Zeit in Jahr und dann dem Data Frame hinzugefügt-------------------
 data_year <- year(anytime(data_amazon$unixReviewTime))
@@ -34,6 +37,7 @@ Token_data <-
 Token_data <- tokens_remove(Token_data, pattern = stopwords("en"))
 
 #DFM Objekt-----------------------------------
-
 dfm_data <- dfm(Token_data)
-
+#Fill in random sex variable 5/8 male 3/8 Female
+docvars(dfm_data, field = "sex") <-
+  rep_len(c(1, 0, 0, 1, 0, 1, 1, 1), length.out = 10261)
