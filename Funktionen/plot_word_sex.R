@@ -102,5 +102,5 @@ plotte_word_sex <- function(word, dfm_input, intervall = "year", group_by_sex) {
 
   }
 
-#plotte_word_sex("wichtig", dfm_data,intervall = "month" ,group_by_sex = FALSE )
+#plotte_word_sex("Guitar", dfm_data,intervall = "year" ,group_by_sex = TRUE )
 
