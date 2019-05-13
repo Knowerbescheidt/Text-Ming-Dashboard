@@ -75,7 +75,7 @@ plot_2Dic <- function(input, output, session) {
 
   plot_data <- eventReactive(input$refresh2, {
     plot_dictionaries(
-      dfm = dfm_data,
+      dfm = dfm_data(),
       dictio_1 = import_excel(
           as.character(input$dictio1)
         ),
