@@ -53,7 +53,7 @@ ui <- dashboardPage(
     tabItem(tabName = "plot_2dics",
             fluidRow(box(
               title = "Plot 2 Dictionaries",
-              plot_2DicUI("one")
+              plot_2DicUI("three")
             ))),
     tabItem(
       tabName = "plot_dics",
@@ -82,7 +82,7 @@ server <- function(input, output) {
   callModule(view_data, "one")
   callModule(select_dataset, "one")
   callModule(alter_dictio, "two")
-  callModule(plot_2Dic, "one")
+  callModule(plot_2Dic, "three")
 }
 
 shinyApp(ui = ui, server = server)
