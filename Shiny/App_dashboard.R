@@ -13,6 +13,7 @@ source(paste0(pfad, "/Module/", "view_data_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "select_dataset_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "Alter_Dic_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "Plot2_Dics_modul.R"), local = TRUE)
+source(paste0(pfad, "/Module/", "plot_by_sex_modul.R"), local = TRUE)
 
 
 ui <- dashboardPage(
@@ -33,6 +34,11 @@ ui <- dashboardPage(
       tabName = "plot_2dics",
       icon = icon("plot_2dics")
     ),
+    menuItem(
+      "Plot by Metadata",
+      tabName = "Metadata",
+      icon = icon("plot_sex")
+    ),
     menuItem("Data",
              tabName = "data",
              icon = icon("data"))
@@ -45,6 +51,11 @@ ui <- dashboardPage(
               box(title = "Select your data",
                   select_datasetUI("one"))
             )),
+    tabItem(tabName = "Metadata",
+            fluidRow(
+              box(title = "Plot by metadata",
+                  plot_by_sexUI("four"))
+             )),
     tabItem(tabName = "data",
             fluidRow(box(
               title = "Data table",
@@ -83,6 +94,7 @@ server <- function(input, output) {
   callModule(select_dataset, "one")
   callModule(alter_dictio, "two")
   callModule(plot_2Dic, "three")
+  callModule(plot_by_sex, "four")
 }
 
 shinyApp(ui = ui, server = server)
