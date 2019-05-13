@@ -37,6 +37,8 @@ Token_data <- tokens_remove(Token_data, pattern = stopwords("en"))
 #DFM Objekt-----------------------------------
 
 dfm_data <- dfm(Token_data)
+docvars(dfm_data, field = "sex") <-
+  rep_len(c(1, 0, 0, 1, 0, 1, 1, 1), length.out = 10261)
 return(dfm_data)
 }
 

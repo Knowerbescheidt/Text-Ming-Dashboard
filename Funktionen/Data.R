@@ -36,4 +36,6 @@ Token_data <- tokens_remove(Token_data, pattern = stopwords("en"))
 #DFM Objekt-----------------------------------
 
 dfm_data <- dfm(Token_data)
-
+#Fill in random sex variable 5/8 male 3/8 Female
+docvars(dfm_data, field = "sex") <-
+  rep_len(c(1, 0, 0, 1, 0, 1, 1, 1), length.out = 10261)
