@@ -84,7 +84,7 @@ plot_Dic <- function(input, output, session) {
     eventReactive(input$refresh, {
       plotte_dictio(
         import_excel(input$dictio),
-        dfm_data,
+        dfm_data(),
         as.character(input$intervall_dictionaries)
       )
     })
