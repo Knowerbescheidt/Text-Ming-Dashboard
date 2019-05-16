@@ -84,7 +84,6 @@ ui <- dashboardPage(
     )
   ))
 )
-#KOmmentar
 
 server <- function(input, output) {
   callModule(plot_Dic, "one")
