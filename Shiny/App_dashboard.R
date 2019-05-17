@@ -14,6 +14,7 @@ source(paste0(pfad, "/Module/", "select_dataset_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "Alter_Dic_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "Plot2_Dics_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "plot_by_sex_modul.R"), local = TRUE)
+source(paste0(pfad, "/Module/", "collocations_modul.R"), local = TRUE)
 
 
 ui <- dashboardPage(
@@ -33,6 +34,11 @@ ui <- dashboardPage(
       "Compare Dictionaries",
       tabName = "plot_2dics",
       icon = icon("plot_2dics")
+    ),
+    menuItem(
+      "Collocations",
+      tabName = "collocations",
+      icon = icon("collocations")
     ),
     menuItem(
       "Plot by Metadata",
@@ -56,6 +62,11 @@ ui <- dashboardPage(
               box(title = "Plot by metadata",
                   plot_by_sexUI("four"))
              )),
+    tabItem(tabName = "collocations",
+            fluidRow(
+              box(title = "Search for Collocations",
+                  find_collocationUI("one"))
+            )),
     tabItem(tabName = "data",
             fluidRow(box(
               title = "Data table",
@@ -94,6 +105,8 @@ server <- function(input, output) {
   callModule(alter_dictio, "two")
   callModule(plot_2Dic, "three")
   callModule(plot_by_sex, "four")
+  callModule(find_collocation, "one")
+  
 }
 
 shinyApp(ui = ui, server = server)
