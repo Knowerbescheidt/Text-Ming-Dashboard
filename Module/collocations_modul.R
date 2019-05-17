@@ -41,7 +41,7 @@ find_collocation <- function(input, output, session) {
         size = input$size,
         min_count = input$min_count
       )
-     # col_datatable <- setDT(col_dataframe)
+    col_datatable <- setDT(col_dataframe)
     return(col_datatable)
       }})
   output$coll_table <- renderDataTable(col_datatable)
