@@ -42,7 +42,7 @@ select_dataset <-  function(input, output, session) {
                  updateSelectInput(
                    session = session,
                    inputId = "Data_set",
-                   label = "Data set",
+                   label = "Dataset",
                    choices = names_vec()
                  )
                })

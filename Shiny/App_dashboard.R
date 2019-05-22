@@ -15,6 +15,7 @@ source(paste0(pfad, "/Module/", "Alter_Dic_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "Plot2_Dics_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "plot_by_sex_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "collocations_modul.R"), local = TRUE)
+source(paste0(pfad, "/Module/", "sentiment_modul.R"), local = TRUE)
 
 
 ui <- dashboardPage(
@@ -45,6 +46,11 @@ ui <- dashboardPage(
       tabName = "Metadata",
       icon = icon("plot_sex")
     ),
+    menuItem(
+      "Sentiment Analysis",
+      tabName = "Sentiment",
+      icon = icon("sentiment")
+    ),
     menuItem("Data",
              tabName = "data",
              icon = icon("data"))
@@ -60,8 +66,13 @@ ui <- dashboardPage(
     tabItem(tabName = "Metadata",
             fluidRow(
               box(title = "Plot by metadata",
-                  plot_by_sexUI("four"))
+                  plot_by_sexUI("four"),width = 12)
              )),
+    tabItem(tabName = "Sentiment",
+            fluidRow(
+              box(title = "Sentiment Analysis",
+                  analyse_sentimentUI("one"),width = 12)
+            )),
     tabItem(tabName = "collocations",
             fluidRow(
               box(title = "Search for Collocations",
@@ -106,6 +117,7 @@ server <- function(input, output) {
   callModule(plot_2Dic, "three")
   callModule(plot_by_sex, "four")
   callModule(find_collocation, "one")
+  callModule(analyse_sentiment, "one")
   
 }
 

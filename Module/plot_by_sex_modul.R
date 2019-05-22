@@ -15,7 +15,7 @@ plot_by_sexUI <- function(id, dictionary_id) {
     textInput(
       ns("word"),
       placeholder = "lower cases",
-      label = "word",
+      label = "Word for timeseries",
       value = "Beispiel",
       width = 600
     ),
@@ -31,7 +31,7 @@ plot_by_sexUI <- function(id, dictionary_id) {
       choiceNames = c("none", "Sex"),
       choiceValues = c(0, 1)
     ),
-    box(plotlyOutput(ns("bar_chart_word")), width = 50)
+    box(plotlyOutput(ns("bar_chart_word")), width = 500)
   ))
 }
 

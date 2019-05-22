@@ -26,15 +26,18 @@ save_Dic <-  function(input, output, session) {
   x <- c("Word", NA, NA, NA)
   data_frame_bsp <-
     data.frame(Words = x, stringsAsFactors =  FALSE)
-  observeEvent(input$save_button,
-               write.xlsx(
-                 hot_to_r(input$table),
-                 file = paste0(
-                   pfad,
-                   "Daten/Dictionaries/Dictionary ",
-                   input$dictio_name  ,
-                   ".xlsx"
-                 ),
-                 row.names = FALSE
-               ))
+  observeEvent(
+    input$save_button,
+    write.xlsx(
+      hot_to_r(input$table),
+      file = paste0(
+        pfad,
+        "Daten/Dictionaries/Dictionary ",
+        input$dictio_name  ,
+        ".xlsx"
+      ),
+      row.names = FALSE,
+      col.names = FALSE
+    )
+  )
 }

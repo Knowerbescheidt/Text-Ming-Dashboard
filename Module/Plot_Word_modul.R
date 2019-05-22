@@ -22,7 +22,7 @@ plot_wordUI <- function(id) {
     textInput(
       ns("word_search"),
       placeholder = "lower cases",
-      label = "word",
+      label = "Word for timeseries",
       value = "Beispiel",
       width = 600
     ),
