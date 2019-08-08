@@ -8,7 +8,7 @@ require(plotly)
 
 
 #Plot Funktion---------------------------------------
-plotte_word <- function(word, dfm_input, intervall = "year") {
+plot_word <- function(word, dfm_input, intervall = "year") {
   #month--------
   word <- tolower(word)
   if ("month" == intervall) {
