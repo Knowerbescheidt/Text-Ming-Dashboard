@@ -11,7 +11,8 @@ find_coll <- function(Token_object, size, min_count) {
     )
     coll_stat <-
       textstat_collocations(coll_runtime, min_count = min_count, size = size)
-    coll_stat <- coll_stat[order(coll_stat$count, decreasing = TRUE), ]
+    coll_stat <-
+      coll_stat[order(coll_stat$count, decreasing = TRUE),]
     coll_df <-
       data.frame(
         collocation_name = coll_stat[[1]],
@@ -28,4 +29,3 @@ find_coll <- function(Token_object, size, min_count) {
 
 #Test hier--------------
 #df <- find_coll(Token_data, size = 3, min_count = 20)
-
