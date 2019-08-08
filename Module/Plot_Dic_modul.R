@@ -4,15 +4,14 @@ require(shinyalert)
 source(
   paste0(
     "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
-    "PlotteDictio",
-    ".R"
+    "plotte_Dic.R"
   ),
   local = TRUE
 )
 source(
   paste0(
     "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
-    "Excel_Input.R"
+    "excel_Input.R"
   ),
   local = TRUE
 )

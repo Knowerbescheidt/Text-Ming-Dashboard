@@ -2,16 +2,14 @@ require(shiny)
 source(
   paste0(
     "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
-    "PlotteWord",
-    ".R"
+    "plot_word.R"
   ),
   local = TRUE
 )
 source(
   paste0(
     "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
-    "Data_prep",
-    ".R"
+    "data_prep_dfm.R"
   ),
   local = TRUE
 )
