@@ -9,17 +9,20 @@ require(DT)
 
 view_dataUI <- function(id) {
   ns <- NS(id)
-  tagList(DTOutput(ns("text_data"),width = 600))
+  tagList(DTOutput(ns("text_data"), width = 600))
 }
 
 #Server--------
 view_data <- function(input, output, session) {
-  data_to_view <- corpus_data[[, c(1, 3, 4)]] #gut wären auch 5,8,9,10
+  data_to_view <- corpus_data[[, c(1, 3, 4)]] #gut w?ren auch 5,8,9,10
   #data_to_view$timestamp <- anytime(data_to_view[, 7])
   
   output$text_data <-
-    renderDT(datatable({data_to_view},rownames = FALSE), options = list(autoWidth = TRUE,
-                                                 columnDefs = list(list(
-                                                   width = 500, targets = data_to_view$texts
-                                                 ))))
+    renderDT(datatable({
+      data_to_view
+    }, rownames = FALSE),
+    options = list(autoWidth = TRUE,
+                   columnDefs = list(
+                     list(width = 500, targets = data_to_view$texts)
+                   )))
 }
