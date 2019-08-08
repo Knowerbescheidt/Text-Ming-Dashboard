@@ -39,5 +39,5 @@ Token_data <- tokens_remove(Token_data, pattern = stopwords("en"))
 dfm_data <- dfm(Token_data)
 return(dfm_data)
 }
-data_prep_dfm("C:/Users/Jani/Documents/R Hausaufgabe/Daten/Musical_Instruments_5.json")
-dfm_test <- data_prep_dfm("C:/Users/Jani/Documents/R Hausaufgabe/Daten/Patio_Lawn_and_Garden_5.json")
+# data_prep_dfm("C:/Users/Jani/Documents/R Hausaufgabe/Daten/Musical_Instruments_5.json")
+# dfm_test <- data_prep_dfm("C:/Users/Jani/Documents/R Hausaufgabe/Daten/Patio_Lawn_and_Garden_5.json")

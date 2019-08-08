@@ -3,9 +3,14 @@ require(shinydashboard)
 require(plotly)
 require(DT)
 require(rhandsontable)
+require(readtext)
+require(quanteda)
+require(lubridate)
+library(anytime)
+require(ggplot2)
+
 options(stringsAsFactors = FALSE)
 pfad <- "C:/Users/Jani/Documents/R Hausaufgabe/"
-source(paste0(pfad, "/Funktionen/", "Data.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "Plot_Dic_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "Plot_Word_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "save_Dic_modul.R"), local = TRUE)
@@ -17,6 +22,8 @@ source(paste0(pfad, "/Module/", "plot_by_sex_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "collocations_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "sentiment_modul.R"), local = TRUE)
 
+#erste Dateninitialisierung--------------
+data_prep_dfm()
 
 ui <- dashboardPage(
   dashboardHeader(title = "Text Mining Tool"),
