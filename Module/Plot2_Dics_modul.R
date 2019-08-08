@@ -4,7 +4,7 @@ require(shinyalert)
 source(
   paste0(
     "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
-    "Plot2_Dictionaries.R"
+    "plot_2Dic.R"
   ),
   local = TRUE
 )
@@ -31,12 +31,7 @@ plot_2DicUI <- function(id, dictionary_id) {
     actionButton(ns("refresh2"), label = "Update Plot"),
     actionButton(ns("refresh_2dictionaries"), label = "Update Dictionaries"),
     plotlyOutput(ns("bar_chart_dicts"))
-    
-    
-    
-  )
-  
-  
+    )
 }
 
 
@@ -88,12 +83,6 @@ plot_2Dic <- function(input, output, session) {
   })
   
   output$bar_chart_dicts <- renderPlotly({plot_data()})
-  
-  
-  
-  
-  
-  
-  
+
 }
 
