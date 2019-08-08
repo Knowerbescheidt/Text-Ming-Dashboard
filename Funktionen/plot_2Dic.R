@@ -51,11 +51,9 @@ plot_dictionaries <-
   }
 
 # #Test-----------
-
-
 # dictio_test1 <- import_excel("Dictionary Imp - Kopie.xlsx")
 # dictio_test2 <- import_excel("Dictionary Imp.xlsx")
 # dfm_test <- dfm(Token_data)
 # plot_dictionaries(dfm_test, dictio_test1, dictio_test2, intervall = "month")
 # dfm_lookup(dfm_test, dictio_test1)
-#das Problem ist also wieder wenn etwas leer ist dann muss es ersetzt werden
+
