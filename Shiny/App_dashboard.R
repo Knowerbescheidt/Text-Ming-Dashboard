@@ -5,7 +5,7 @@ require(DT)
 require(rhandsontable)
 options(stringsAsFactors = FALSE)
 pfad <- "C:/Users/Jani/Documents/R Hausaufgabe/"
-source(paste0(pfad, "/Daten/", "Data.R"), local = TRUE)
+source(paste0(pfad, "/Funktionen/", "Data.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "Plot_Dic_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "Plot_Word_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "save_Dic_modul.R"), local = TRUE)
@@ -19,7 +19,7 @@ source(paste0(pfad, "/Module/", "sentiment_modul.R"), local = TRUE)
 
 
 ui <- dashboardPage(
-  dashboardHeader(title = "Mining Your Comments"),
+  dashboardHeader(title = "Text Mining Tool"),
   dashboardSidebar(sidebarMenu(
     menuItem(
       "Timeseries Words",
@@ -76,7 +76,7 @@ ui <- dashboardPage(
     tabItem(tabName = "collocations",
             fluidRow(
               box(title = "Search for Collocations",
-                  find_collocationUI("one"))
+                  find_collocationUI("one"),width = 12)
             )),
     tabItem(tabName = "data",
             fluidRow(box(
