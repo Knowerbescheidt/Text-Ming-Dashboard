@@ -2,6 +2,7 @@ require(gdata)
 require(xlsx)
 options(stringsAsFactors = F)
 
+#Import Excel Funktion-------------
 import_excel <- function(filename) {
   data_excel <-
     read.xlsx2(
@@ -14,12 +15,11 @@ import_excel <- function(filename) {
       colIndex = 1
     )
   # name_excel <- as.character(data_excel[1, 1])
-  list_excel <- list(words = data_excel[, 1])
-  dictio_master <- dictionary(list_excel)
+  dictio_master <- dictionary(list(words = data_excel[, 1]))
   return(dictio_master)
 }
 
-test <- list.files("C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries")
+#Import Excels Funktion---------------
 import_excels <- function(liste) {
   i <- 1
   dictio_master <- list()
