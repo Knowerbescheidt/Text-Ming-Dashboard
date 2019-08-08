@@ -1,5 +1,10 @@
-source("Funktionen/Data_prep.R", local = TRUE)
-
+source(
+  paste0(
+    "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
+    "Data_prep.R"
+  ),
+  local = TRUE
+)
 
 
 select_datasetUI <- function(id) {
