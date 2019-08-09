@@ -21,9 +21,10 @@ source(paste0(pfad, "/Module/", "plot2_Dics_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "plot_by_sex_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "collocations_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "sentiment_modul.R"), local = TRUE)
+source(paste0(pfad, "/Module/", "tm_modul.R"), local = TRUE)
 
 #erste Dateninitialisierung--------------
-data_prep_dfm()
+dfm_data <- data_prep_dfm()
 
 ui <- dashboardPage(
   dashboardHeader(title = "Text Mining Tool"),
@@ -58,6 +59,11 @@ ui <- dashboardPage(
       tabName = "Sentiment",
       icon = icon("sentiment")
     ),
+    menuItem(
+      "Topic Model",
+      tabName = "TM",
+      icon = icon("topic_model")
+    ),
     menuItem("Data",
              tabName = "data",
              icon = icon("data"))
@@ -75,6 +81,14 @@ ui <- dashboardPage(
               box(title = "Plot by metadata",
                   plot_by_sexUI("four"),width = 12)
              )),
+   
+     tabItem(tabName = "TM",
+            fluidRow(
+              box(title = "Analysetopic Models",
+                  analyse_tmUI("one"),width = 12)
+            )),
+    
+    
     tabItem(tabName = "Sentiment",
             fluidRow(
               box(title = "Sentiment Analysis",
@@ -125,6 +139,7 @@ server <- function(input, output) {
   callModule(plot_by_sex, "four")
   callModule(find_collocation, "one")
   callModule(analyse_sentiment, "one")
+  callModule(analyse_tm, "one")
   
 }
 
