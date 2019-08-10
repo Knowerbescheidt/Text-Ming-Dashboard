@@ -39,7 +39,7 @@ plot_word <- function(input, output, session) {
   word_runtime <-
     eventReactive(input$refresh_plot, {
       if (existsFunction("dfm_data") == TRUE) {
-        (plotte_word(input$word_search, dfm_data(), input$intervall_words))
+        (plot_word_func(input$word_search, dfm_data(), input$intervall_words))
       }
       else{
         shinyalert(
