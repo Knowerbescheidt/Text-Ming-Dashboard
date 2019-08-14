@@ -1,3 +1,4 @@
+devtools::install_github("quanteda/quanteda.corpora")
 require(quanteda)
 require(quanteda.corpora)
 require(lubridate)

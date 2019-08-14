@@ -2,8 +2,8 @@ require(shiny)
 require(shinyalert)
 
 source(
-  paste0(
-    "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
+  paste0(getwd(),
+    "/Funktionen/",
     "plot_word_sex.R"
   ),
   local = TRUE

@@ -1,4 +1,5 @@
-
+#Hier könnte man für den /Daten/Dictionaries/ Pfad auch eine Variable anlegen, die dann immer wieder aufgerufen wird
+#Der wird nämlich sehr oft aufgerufen ;)
 
 alter_dictioUI <- function(id, dictionary_id) {
   ns <- NS(id)
@@ -22,8 +23,8 @@ alter_dictio <- function(input, output, session) {
   observeEvent(input$save_dic, {
     write.xlsx2(
       hot_to_r(input$display_dic),
-      file = paste0(
-        "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
+      file = paste0(getwd(),
+        "/Daten/Dictionaries/",
         input$dictio
       ),
       row.names = FALSE,
@@ -35,8 +36,8 @@ alter_dictio <- function(input, output, session) {
   dic_view <-
     eventReactive(input$show_dic, {
       rhandsontable(read.xlsx(
-        paste0(
-          "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
+        paste0(getwd(),
+          "/Daten/Dictionaries/",
           as.character(input$dictio)
         ),
         sheetIndex = 1,
@@ -49,9 +50,9 @@ alter_dictio <- function(input, output, session) {
   
   vec_name_obj <- eventReactive(input$refresh_dictionaries, {
     liste <-
-      import_excels(list.files(
-        "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/"
-      ))
+      import_excels(list.files(paste0(getwd(),
+        "/Daten/Dictionaries/"
+      )))
     vec_name <- c()
     i <- 1
     for (i in 1:length(liste)) {
@@ -74,8 +75,8 @@ alter_dictio <- function(input, output, session) {
   #refresh dictionaries Error---------------
   observeEvent(input$refresh, {
     if (file.exists(
-      paste0(
-        "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
+      paste0(getwd(),
+        "/Daten/Dictionaries/",
         as.character(input$dictio)
       )
     ) == FALSE) {
@@ -88,14 +89,14 @@ alter_dictio <- function(input, output, session) {
   #delete Dictionaries-----------------------
   observeEvent(input$delete_dictionary, {
     if (file.exists(
-      paste0(
-        "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
+      paste0(getwd(),
+        "/Daten/Dictionaries/",
         as.character(input$dictio)
       )
     ) == TRUE) {
       file.remove(
-        paste0(
-          "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
+        paste0(getwd(),
+          "/Daten/Dictionaries/",
           as.character(input$dictio)
         )
       )
@@ -104,7 +105,5 @@ alter_dictio <- function(input, output, session) {
       print("Wurde gelöscht")
     }
   })
-  
-  
-  
+
 }

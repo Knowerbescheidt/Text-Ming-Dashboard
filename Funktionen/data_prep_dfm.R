@@ -11,7 +11,7 @@ require(plotly)
 
 
 data_prep_dfm <-
-  function(pathway = "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Amazon_data/Musical_Instruments_5.json") {
+  function(pathway = paste0(getwd(), "/Daten/Amazon_data/Musical_Instruments_5.json")) {
     data_amazon <- stream_in(pathway)
     
     #Umwandlung der Zeit in Jahr und dann dem Data Frame hinzugefuegt-------------------

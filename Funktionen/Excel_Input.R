@@ -1,13 +1,13 @@
 require(gdata)
-require(xlsx)
+require(openxlsx)
 options(stringsAsFactors = F)
 
 #Import Excel Funktion-------------
 import_excel <- function(filename) {
   data_excel <-
-    read.xlsx2(
-      file = paste0(
-        "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
+    read.xlsx(
+      file = paste0(getwd(),
+        "/Daten/Dictionaries/",
         filename
       ),
       sheetIndex = 1,
@@ -26,9 +26,9 @@ import_excels <- function(liste) {
   while (i <= length(liste)) {
     name <- liste[i]
     data_excel <-
-      read.xlsx2(
-        paste0(
-          "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
+      read.xlsx(
+        paste0(getwd(),
+          "/Daten/Dictionaries/",
           file = name 
         ),
         sheetIndex = 1,
@@ -43,7 +43,3 @@ import_excels <- function(liste) {
   }
   return(dictio_master)
 }
-
-
-
-

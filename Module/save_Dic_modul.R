@@ -31,7 +31,7 @@ save_Dic <-  function(input, output, session) {
     write.xlsx(
       hot_to_r(input$table),
       file = paste0(
-        pfad,
+        getwd(),
         "Daten/Dictionaries/Dictionary ",
         input$dictio_name  ,
         ".xlsx"
