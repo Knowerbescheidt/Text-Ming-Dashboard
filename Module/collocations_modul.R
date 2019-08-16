@@ -1,10 +1,15 @@
 require(shiny)
 require(data.table)
 source(
-  paste0(
-    "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
-    "collocations.R"
-  ),
+  paste0(getwd(),
+    "/Funktionen/",
+    "collocations.R"),
+  local = TRUE
+)
+source(
+  paste0(getwd(),
+         "/Funktionen/",
+         "data_prep_dfm.R"),
   local = TRUE
 )
 

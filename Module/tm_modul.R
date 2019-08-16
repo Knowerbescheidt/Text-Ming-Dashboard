@@ -1,6 +1,6 @@
 require(shiny)
 
-source(paste0("C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/tm.R"),
+source(paste0(getwd(), "/Funktionen/tm.R"),
        local = TRUE)
 
 analyse_tmUI <- function(id) {
