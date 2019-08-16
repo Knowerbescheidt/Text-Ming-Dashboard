@@ -21,14 +21,12 @@ alter_dictioUI <- function(id, dictionary_id) {
 alter_dictio <- function(input, output, session) {
   #Saving Dictionary----------
   observeEvent(input$save_dic, {
-    write.xlsx2(
+    write.xlsx(
       hot_to_r(input$display_dic),
       file = paste0(getwd(),
         "/Daten/Dictionaries/",
         input$dictio
-      ),
-      row.names = FALSE,
-      col.names = FALSE
+      )
     )
   })
   
@@ -40,8 +38,8 @@ alter_dictio <- function(input, output, session) {
           "/Daten/Dictionaries/",
           as.character(input$dictio)
         ),
-        sheetIndex = 1,
-        header = FALSE
+        sheet = 1,
+        colNames = FALSE
       ),
       colHeaders = c("Words"))
     })

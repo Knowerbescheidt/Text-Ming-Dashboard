@@ -7,6 +7,12 @@ source(
   ),
   local = TRUE
 )
+source(
+  paste0(getwd(),
+         "/Funktionen/",
+         "data_prep_dfm.R"),
+  local = TRUE
+)
 
 analyse_sentimentUI <- function(id) {
   ns <- NS(id)

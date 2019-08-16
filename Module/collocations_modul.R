@@ -3,8 +3,13 @@ require(data.table)
 source(
   paste0(getwd(),
     "/Funktionen/",
-    "collocations.R"
-  ),
+    "collocations.R"),
+  local = TRUE
+)
+source(
+  paste0(getwd(),
+         "/Funktionen/",
+         "data_prep_dfm.R"),
   local = TRUE
 )
 
