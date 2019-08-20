@@ -10,7 +10,7 @@ library(anytime)
 require(ggplot2)
 
 options(stringsAsFactors = FALSE)
-pfad <- "C:/Users/Jani/Documents/R Hausaufgabe/"
+pfad <- getwd()
 source(paste0(pfad, "/Module/", "plot_Dic_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "plot_Word_modul.R"), local = TRUE)
 source(paste0(pfad, "/Module/", "save_Dic_modul.R"), local = TRUE)
