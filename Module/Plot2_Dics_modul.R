@@ -2,8 +2,8 @@ require(shiny)
 require(shinyalert)
 
 source(
-  paste0(
-    "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
+  paste0(getwd(),
+    "/Funktionen/",
     "plot_2Dic.R"
   ),
   local = TRUE
@@ -38,9 +38,9 @@ plot_2DicUI <- function(id, dictionary_id) {
 plot_2Dic <- function(input, output, session) {
   vec_name_obj <- eventReactive(input$refresh_2dictionaries, {
     liste <-
-      import_excels(list.files(
-        "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/"
-      ))
+      import_excels(list.files(paste0(
+        getwd(), "/Daten/Dictionaries/"
+      )))
     vec_name <- c()
     i <- 1
     for (i in 1:length(liste)) {

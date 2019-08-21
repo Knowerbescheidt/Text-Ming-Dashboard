@@ -2,15 +2,15 @@ require(shiny)
 require(shinyalert)
 
 source(
-  paste0(
-    "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
+  paste0(getwd(),
+    "/Funktionen/",
     "plotte_Dic.R"
   ),
   local = TRUE
 )
 source(
-  paste0(
-    "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
+  paste0(getwd(),
+    "/Funktionen/",
     "excel_Input.R"
   ),
   local = TRUE
@@ -42,9 +42,9 @@ plot_Dic <- function(input, output, session) {
   #Refresh list of dictionaries and names---------------------------
   vec_name_obj <- eventReactive(input$refresh_dictionaries, {
     liste <-
-      import_excels(list.files(
-        "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/"
-      ))
+      import_excels(list.files(paste0(
+        getwd(), "/Daten/Dictionaries/"
+      )))
     vec_name <- c()
     i <- 1
     for (i in 1:length(liste)) {
@@ -67,8 +67,8 @@ plot_Dic <- function(input, output, session) {
   #refresh dictionaries Error---------------
   observeEvent(input$refresh, {
     if (file.exists(
-      paste0(
-        "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
+      paste0(getwd(),
+        "/Daten/Dictionaries/",
         as.character(input$dictio)
       )
     ) == FALSE) {
@@ -91,8 +91,8 @@ plot_Dic <- function(input, output, session) {
   #barchart output------------------
   output$bar_chart_dict <- renderPlotly({
     if (file.exists(
-      paste0(
-        "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Dictionaries/",
+      paste0(getwd(),
+        "/Daten/Dictionaries/",
         as.character(input$dictio)
       )
     ) == TRUE) {

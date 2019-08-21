@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 source(paste0("C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/tm.R"),
+=======
+require(shiny)
+
+source(paste0(getwd(), "/Funktionen/tm.R"),
+>>>>>>> 391e41b8a6e5680b95c6612b710ec351f28ba43f
        local = TRUE)
 
 analyse_tmUI <- function(id) {
