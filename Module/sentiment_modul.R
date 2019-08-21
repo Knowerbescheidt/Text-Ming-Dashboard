@@ -26,7 +26,7 @@ analyse_sentimentUI <- function(id) {
 
 analyse_sentiment <- function(input, output, session) {
   plot <- eventReactive(input$get_sentiment, {
-    sentiment_analysis(Token_data)
+    sentiment_analysis(Token_data())
   })
   output$bar_chart_sentiment <- renderPlotly({plot()})
   
