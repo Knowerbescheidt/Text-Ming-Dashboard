@@ -5,6 +5,13 @@ source(
   ),
   local = TRUE
 )
+source(
+  paste0(getwd(),
+         "/Funktionen/",
+         "data_prep_token.R"
+  ),
+  local = TRUE
+)
 
 
 select_datasetUI <- function(id) {
@@ -35,7 +42,21 @@ select_dataset <-  function(input, output, session) {
            value = dfm_data,
            envir = globalenv())
   })
-  #refresh names-----------
+  Token_data <- eventReactive(input$select_data, {
+    data_prep_token(
+      paste0(getwd(),
+             "/Daten/Amazon_data/",
+             input$Data_set
+      )
+    )
+  })
+  observeEvent(input$select_data, {
+    #assign Token_data zu Token_data
+    assign(x = "Token_data",
+           value = Token_data,
+           envir = globalenv())
+  })
+    #refresh names-----------
   
   names_vec <- eventReactive(input$refresh_data, {
     liste <-
@@ -53,6 +74,10 @@ select_dataset <-  function(input, output, session) {
                })
   
 }
+
+
+
+
 
 #Alter Code------------------
 #

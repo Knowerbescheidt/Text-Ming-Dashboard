@@ -5,7 +5,6 @@ require(DT)
 require(rhandsontable)
 require(readtext)
 require(quanteda)
-require(lubridate)
 library(anytime)
 require(ggplot2)
 require(jsonlite)
@@ -28,6 +27,7 @@ source(paste0(pfad, "tm_modul.R"), local = TRUE)
 
 #erste Dateninitialisierung--------------
 dfm_data <- data_prep_dfm()
+Token_data <- data_prep_token()
 
 ui <- dashboardPage(
   dashboardHeader(title = "Text Mining Tool"),
@@ -102,11 +102,11 @@ ui <- dashboardPage(
               box(title = "Search for Collocations",
                   find_collocationUI("one"),width = 12)
             )),
-    tabItem(tabName = "data",
-            fluidRow(box(
-              title = "Data table",
-              view_dataUI("one")
-            ))),
+    # tabItem(tabName = "data",
+    #         fluidRow(box(
+    #           title = "Data table",
+    #           view_dataUI("one")
+    #         ))),
     tabItem(tabName = "plot_2dics",
             fluidRow(box(
               title = "Plot 2 Dictionaries",
@@ -135,7 +135,7 @@ server <- function(input, output) {
   callModule(plot_Dic, "one")
   callModule(plot_word, "one")
   callModule(save_Dic, "one")
-  callModule(view_data, "one")
+  #callModule(view_data, "one")
   callModule(select_dataset, "one")
   callModule(alter_dictio, "two")
   callModule(plot_2Dic, "three")

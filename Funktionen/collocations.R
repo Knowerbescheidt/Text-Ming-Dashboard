@@ -6,10 +6,10 @@ source(
   local = TRUE
   )
 
-find_coll <- function(Token_object, size, min_count) {
+find_coll <- function(Token_object = Token_data , size, min_count) {
   if (min_count > 5) {
     coll_runtime <- tokens_select(
-      Token_data,
+      Token_object,
       pattern = '^[a-z]',
       valuetype = 'regex',
       case_insensitive = FALSE,

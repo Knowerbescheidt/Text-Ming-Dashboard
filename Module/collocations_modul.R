@@ -6,12 +6,6 @@ source(
     "collocations.R"),
   local = TRUE
 )
-source(
-  paste0(getwd(),
-         "/Funktionen/",
-         "data_prep_dfm.R"),
-  local = TRUE
-)
 
 find_collocationUI <- function(id) {
   ns <- NS(id)
@@ -43,7 +37,7 @@ find_collocationUI <- function(id) {
 find_collocation <- function(input, output, session) {
   col_datatable <- eventReactive(input$get_coll, {
     col_dataframe <- find_coll(
-      Token_object = Token_data,
+      Token_object = Token_data(),
       size = input$size,
       min_count = input$min_count
     )
@@ -52,3 +46,4 @@ find_collocation <- function(input, output, session) {
   output$coll_table <- renderDataTable(col_datatable())
   
 }
+
