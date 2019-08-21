@@ -23,6 +23,7 @@ source(paste0(pfad, "collocations_modul.R"), local = TRUE)
 source(paste0(pfad, "sentiment_modul.R"), local = TRUE)
 source(paste0(pfad, "tm_modul.R"), local = TRUE)
 
+
 #erste Dateninitialisierung--------------
 dfm_data <- data_prep_dfm()
 
