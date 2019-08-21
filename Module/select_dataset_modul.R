@@ -1,6 +1,6 @@
 source(
-  paste0(
-    "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
+  paste0(getwd(),
+    "/Funktionen/",
     "data_prep_dfm.R"
   ),
   local = TRUE
@@ -23,8 +23,8 @@ select_datasetUI <- function(id) {
 select_dataset <-  function(input, output, session) {
   dfm_data <- eventReactive(input$select_data, {
     data_prep_dfm(
-      paste0(
-        "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Amazon_data/",
+      paste0(getwd(),
+        "/Daten/Amazon_data/",
         input$Data_set
       )
     )
@@ -39,7 +39,7 @@ select_dataset <-  function(input, output, session) {
   
   names_vec <- eventReactive(input$refresh_data, {
     liste <-
-      list.files("C:/Users/Jani/Documents/R Hausaufgabe/Daten/Amazon_data/")
+      list.files(paste0(getwd(), "/Daten/Amazon_data/"))
     return(liste)
   })
   observeEvent(input$refresh_data,
