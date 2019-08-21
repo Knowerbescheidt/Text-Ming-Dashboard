@@ -43,13 +43,13 @@ data_prep_dfm <-
 
 
 #erste Initialisierung für corpus_data-----------------------
-# data_amazon <- stream_in("C:/Users/Jani/Documents/R Hausaufgabe/Daten/Amazon_data/Musical_Instruments_5.json")
-# 
-# #Umwandlung der Zeit in Jahr und dann dem Data Frame hinzugefuegt
-# data_amazon$year <- year(anytime(data_amazon$unixReviewTime))
-# data_amazon$month <- month(anytime(data_amazon$unixReviewTime))
-# data_amazon$doc_id <- c(1:nrow(data_amazon))
-# 
-# #Aufbereitung
-# corpus_data <-
-#   corpus(data_amazon, docid_field = "doc_id", text_field = "reviewText")
+data_amazon <- stream_in(paste0(getwd(), "/Daten/Amazon_data/Musical_Instruments_5.json"))
+
+#Umwandlung der Zeit in Jahr und dann dem Data Frame hinzugefuegt
+data_amazon$year <- year(anytime(data_amazon$unixReviewTime))
+data_amazon$month <- month(anytime(data_amazon$unixReviewTime))
+data_amazon$doc_id <- c(1:nrow(data_amazon))
+
+#Aufbereitung
+corpus_data <-
+  corpus(data_amazon, docid_field = "doc_id", text_field = "reviewText")
