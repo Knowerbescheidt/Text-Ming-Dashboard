@@ -3,11 +3,8 @@ options(stringsAsFactors = F)
 
 
 data_prep_dfm <-
-<<<<<<< HEAD
-  function(pathway = paste0(getwd(),"/Daten/Amazon_data/Musical_Instruments_5.json")) {
-=======
+
   function(pathway = paste0(getwd(), "/Daten/Amazon_data/Musical_Instruments_5.json")) {
->>>>>>> 391e41b8a6e5680b95c6612b710ec351f28ba43f
     data_amazon <- stream_in(pathway)
     
     #Umwandlung der Zeit in Jahr und dann dem Data Frame hinzugefuegt-------------------
