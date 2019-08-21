@@ -8,6 +8,8 @@ require(quanteda)
 require(lubridate)
 library(anytime)
 require(ggplot2)
+require(jsonlite)
+require(ndjson)
 
 options(stringsAsFactors = FALSE)
 pfad <- getwd()

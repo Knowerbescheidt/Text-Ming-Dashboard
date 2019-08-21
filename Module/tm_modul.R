@@ -1,5 +1,3 @@
-require(shiny)
-
 source(paste0("C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/tm.R"),
        local = TRUE)
 
