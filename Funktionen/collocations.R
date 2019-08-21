@@ -1,4 +1,10 @@
 require(quanteda)
+source(
+  paste0(getwd(),
+    "/Funktionen/",
+    "data_prep_dfm.R"),
+  local = TRUE
+  )
 
 find_coll <- function(Token_object, size, min_count) {
   if (min_count > 5) {

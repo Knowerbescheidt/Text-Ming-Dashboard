@@ -1,10 +1,16 @@
 require(shiny)
 require(data.table)
 source(
-  paste0(
-    "C:/Users/Jani/Documents/R Hausaufgabe/Funktionen/",
+  paste0(getwd(),
+    "/Funktionen/",
     "sentiment_analysis.R"
   ),
+  local = TRUE
+)
+source(
+  paste0(getwd(),
+         "/Funktionen/",
+         "data_prep_dfm.R"),
   local = TRUE
 )
 

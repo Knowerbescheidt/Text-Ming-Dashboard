@@ -1,5 +1,4 @@
 require(quanteda)
-require(quanteda.corpora)
 require(lubridate)
 require(topicmodels)
 
