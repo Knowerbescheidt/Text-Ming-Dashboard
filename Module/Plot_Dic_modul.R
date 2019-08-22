@@ -1,6 +1,3 @@
-require(shiny)
-require(shinyalert)
-
 source(
   paste0(getwd(),
     "/Funktionen/",
