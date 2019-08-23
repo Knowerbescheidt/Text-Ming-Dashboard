@@ -9,6 +9,8 @@ library(anytime)
 require(ggplot2)
 require(jsonlite)
 require(ndjson)
+require(shinyalert)
+
 
 options(stringsAsFactors = FALSE)
 pfad <- paste0(getwd(), "/Module/")
@@ -24,18 +26,13 @@ source(paste0(pfad, "collocations_modul.R"), local = TRUE)
 source(paste0(pfad, "sentiment_modul.R"), local = TRUE)
 source(paste0(pfad, "tm_modul.R"), local = TRUE)
 
-
-#erste Dateninitialisierung gerade nicht nötig--------------
-# dfm_data <- data_prep_dfm()
-# Token_data <- data_prep_token()
-
 ui <- dashboardPage(
   dashboardHeader(title = "Text Mining Tool"),
   dashboardSidebar(sidebarMenu(
     menuItem(
       "Timeseries Words",
       tabName = "plot_words",
-      icon = icon("plot_words")
+      icon = icon("chart_bar")
     ),
     menuItem(
       "Timeseries Dictionaries",
@@ -102,11 +99,11 @@ ui <- dashboardPage(
               box(title = "Search for Collocations",
                   find_collocationUI("one"),width = 12)
             )),
-    # tabItem(tabName = "data",
-    #         fluidRow(box(
-    #           title = "Data table",
-    #           view_dataUI("one")
-    #         ))),
+    tabItem(tabName = "data",
+            fluidRow(box(
+              title = "Data table",
+              view_dataUI("one"),width = 12
+            ))),
     tabItem(tabName = "plot_2dics",
             fluidRow(box(
               title = "Plot 2 Dictionaries",
@@ -135,7 +132,7 @@ server <- function(input, output) {
   callModule(plot_Dic, "one")
   callModule(plot_word, "one")
   callModule(save_Dic, "one")
-  #callModule(view_data, "one")
+  callModule(view_data, "one")
   callModule(select_dataset, "one")
   callModule(alter_dictio, "two")
   callModule(plot_2Dic, "three")
