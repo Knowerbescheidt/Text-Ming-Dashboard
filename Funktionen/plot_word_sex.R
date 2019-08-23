@@ -1,5 +1,6 @@
 
 
+
 plotte_word_sex <-
   function(word, dfm_input, intervall = "year", group_by_sex) {
     word <- tolower(word)
@@ -103,5 +104,3 @@ plotte_word_sex <-
     }
     
   }
-
-#plotte_word_sex("Guitar", dfm_data,intervall = "year" ,group_by_sex = TRUE )

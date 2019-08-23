@@ -1,12 +1,3 @@
-options(stringsAsFactors = F)
-
-require(readtext)
-require(quanteda)
-require(lubridate)
-require(ggplot2)
-require(plotly)
-
-
 #Plot Funktion---------------------------------------
 plot_word_func <- function(word, dfm_input, intervall = "year") {
   #month--------
@@ -81,6 +72,3 @@ plot_word_func <- function(word, dfm_input, intervall = "year") {
     
   }
 }
-#Test------------------
-#plotte_word("Guitar", dfm_input =  dfm_data, intervall = "year")
-

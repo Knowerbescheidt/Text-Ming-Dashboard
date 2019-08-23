@@ -12,7 +12,7 @@ require(ndjson)
 require(shinyalert)
 require(topicmodels)
 require(lubridate) #wird in tm Funktion gebraucht
-
+require(readtext)
 
 options(stringsAsFactors = FALSE)
 pfad <- paste0(getwd(), "/Module/")
