@@ -1,4 +1,4 @@
-
+#UI-------------------
 view_dataUI <- function(id) {
   ns <- NS(id)
   tagList(actionButton(ns("update_table"), label = "Update Table"),
