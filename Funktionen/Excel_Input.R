@@ -1,15 +1,12 @@
-require(gdata)
-require(openxlsx)
-options(stringsAsFactors = F)
+
 
 #Import Excel Funktion-------------
 import_excel <- function(filename) {
   data_excel <-
     read.xlsx(
       paste0(getwd(),
-        "/Daten/Dictionaries/",
-        filename
-      ),
+             "/Daten/Dictionaries/",
+             filename),
       sheet = 1,
       cols = 1
     )
@@ -29,9 +26,8 @@ import_excels <- function(liste) {
     data_excel <-
       read.xlsx(
         paste0(getwd(),
-          "/Daten/Dictionaries/",
-          file = name 
-        ),
+               "/Daten/Dictionaries/",
+               file = name),
         sheet = 1,
         cols = 1
       )

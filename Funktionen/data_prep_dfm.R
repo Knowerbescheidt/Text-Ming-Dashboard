@@ -1,4 +1,3 @@
-options(stringsAsFactors = F)
 data_prep_dfm <-
   function(pathway = paste0(getwd(), "/Daten/Amazon_data/Musical_Instruments_5.json")) {
     data_amazon <- stream_in(pathway)

@@ -13,6 +13,7 @@ require(shinyalert)
 require(topicmodels)
 require(lubridate) #wird in tm Funktion gebraucht
 require(readtext)
+require(openxlsx)
 
 options(stringsAsFactors = FALSE)
 pfad <- paste0(getwd(), "/Module/")

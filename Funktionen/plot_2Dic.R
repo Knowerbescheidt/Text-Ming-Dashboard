@@ -1,6 +1,3 @@
-require(quanteda)
-require(plotly)
-
 
 plot_dictionaries <-
   function(dfm, dictio_1, dictio_2, intervall) {
@@ -56,4 +53,3 @@ plot_dictionaries <-
 # dfm_test <- dfm(Token_data)
 # plot_dictionaries(dfm_test, dictio_test1, dictio_test2, intervall = "month")
 # dfm_lookup(dfm_test, dictio_test1)
-
