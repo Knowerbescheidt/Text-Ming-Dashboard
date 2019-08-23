@@ -10,6 +10,9 @@ require(ggplot2)
 require(jsonlite)
 require(ndjson)
 require(shinyalert)
+require(topicmodels)
+require(lubridate) #wird in tm Funktion gebraucht
+
 
 options(stringsAsFactors = FALSE)
 pfad <- paste0(getwd(), "/Module/")

@@ -1,5 +1,3 @@
-
-
 sentiment_analysis <-
   function(Token_object,
            dictionary = data_dictionary_LSD2015,
@@ -43,7 +41,4 @@ sentiment_analysis <-
         name = "char_title"
       )
     )
-    
-  }
-#Test-------------
-#sentiment_analysis(Token_object = Token_data)
+   }
