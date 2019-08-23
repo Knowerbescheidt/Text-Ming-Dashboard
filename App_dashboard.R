@@ -18,7 +18,6 @@ require(openxlsx)
 options(stringsAsFactors = FALSE)
 pfad <- paste0(getwd(), "/Module/")
 source(paste0(pfad, "plot_Dic_modul.R"), local = TRUE)
-source(paste0(pfad, "plot_Word_modul.R"), local = TRUE)
 source(paste0(pfad, "save_Dic_modul.R"), local = TRUE)
 source(paste0(pfad, "view_data_modul.R"), local = TRUE)
 source(paste0(pfad, "select_dataset_modul.R"), local = TRUE)
@@ -32,119 +31,112 @@ source(paste0(pfad, "target_collocations_modul.R"), local = TRUE)
 
 ui <- dashboardPage(
   dashboardHeader(title = "Text Mining Tool"),
-  dashboardSidebar(sidebarMenu(
-    menuItem(
-      "Timeseries Words",
-      tabName = "plot_words",
-      icon = icon("chart_bar")
-    ),
-    menuItem(
-      "Timeseries Dictionaries",
-      tabName = "plot_dics",
-      icon = icon("plot_dics")
-    ),
-    menuItem(
-      "Compare Dictionaries",
-      tabName = "plot_2dics",
-      icon = icon("plot_2dics")
-    ),
-    menuItem(
-      "Collocations",
-      tabName = "collocations",
-      icon = icon("collocations")
-    ),
-    menuItem(
-      "Plot by Metadata",
-      tabName = "Metadata",
-      icon = icon("plot_sex")
-    ),
-    menuItem(
-      "Sentiment Analysis",
-      tabName = "Sentiment",
-      icon = icon("sentiment")
-    ),
-    menuItem(
-      "Topic Model",
-      tabName = "TM",
-      icon = icon("topic_model")
-    ),
-    menuItem(
-      "Target Collocation",
-      tabName = "target_collocations",
-      icon = icon("Target Coll")
-    ),
-    menuItem("Data",
-             tabName = "data",
-             icon = icon("data"))
-  )),
-  dashboardBody(tabItems(
-    tabItem(tabName = "plot_words",
-            fluidRow(
-              box(title = "Plot Word",
-                  plot_wordUI("one")),
-              box(title = "Select your data",
-                  select_datasetUI("one"))
-            )),
-    tabItem(tabName = "Metadata",
-            fluidRow(
-              box(title = "Plot by metadata",
-                  plot_by_sexUI("four"),width = 12)
-             )),
-   
-     tabItem(tabName = "TM",
-            fluidRow(
-              box(title = "Analysetopic Models",
-                  analyse_tmUI("one"),width = 12)
-            )),
-    
-    
-    tabItem(tabName = "Sentiment",
-            fluidRow(
-              box(title = "Sentiment Analysis",
-                  analyse_sentimentUI("one"),width = 12)
-            )),
-    tabItem(tabName = "collocations",
-            fluidRow(
-              box(title = "Search for Collocations",
-                  target_collUI("one"),width = 12)
-            )),
-    tabItem(tabName = "data",
-            fluidRow(box(
-              title = "Data table",
-              view_dataUI("one"),width = 12
-            ))),
-    tabItem(tabName = "plot_2dics",
-            fluidRow(box(
-              title = "Plot 2 Dictionaries",
-              plot_2DicUI("three")
-            ))),
-    tabItem(tabName = "target_collocations",
-            fluidRow(box(
-              title = "Target Collocations",
-              target_collUI("two")
-            ))),
-    tabItem(
-      tabName = "plot_dics",
-      box(title =  "Change and Plot Dictionary",
-          plot_DicUI("one")),
-      box(
-        title = "Create Dictionary",
-        save_DicUI("one"),
-        collapsible = TRUE,
-        collapsed = TRUE
+  dashboardSidebar(
+    sidebarMenu(
+      menuItem("Data",
+               tabName = "data",
+               icon = icon("data")),
+      menuItem(
+        "Timeseries Words",
+        tabName = "Metadata",
+        icon = icon("plot_sex")
       ),
-      box(
-        title = "Alter a dictionary",
-        alter_dictioUI("two"),
-        collapsible = TRUE
+      menuItem(
+        "Timeseries Dictionaries",
+        tabName = "plot_dics",
+        icon = icon("plot_dics")
+      ),
+      menuItem(
+        "Compare Dictionaries",
+        tabName = "plot_2dics",
+        icon = icon("plot_2dics")
+      ),
+      menuItem(
+        "Collocations",
+        tabName = "collocations",
+        icon = icon("collocations")
+      ),
+      menuItem(
+        "Target Collocation",
+        tabName = "target_collocations",
+        icon = icon("Target Coll")
+      ),
+      menuItem(
+        "Sentiment Analysis",
+        tabName = "Sentiment",
+        icon = icon("sentiment")
+      ),
+      menuItem(
+        "Topic Model",
+        tabName = "TM",
+        icon = icon("topic_model")
       )
     )
-  ))
+  ),
+  dashboardBody(
+    tabItems(
+      tabItem(tabName = "Metadata",
+              fluidRow(
+                box(title = "Plot by metadata",
+                    plot_by_sexUI("four"), width = 12)
+              )),
+      tabItem(tabName = "TM",
+              fluidRow(
+                box(title = "Analyse topic Models",
+                    analyse_tmUI("one"), width = 12)
+              )),
+      tabItem(tabName = "Sentiment",
+              fluidRow(
+                box(
+                  title = "Sentiment Analysis",
+                  analyse_sentimentUI("one"),
+                  width = 12
+                )
+              )),
+      tabItem(tabName = "collocations",
+              fluidRow(
+                box(title = "Search for Collocations",
+                    find_collocationUI("one"), width = 12)
+              )),
+      tabItem(tabName = "data",
+              fluidRow(
+                box(title = "Select your data",
+                    select_datasetUI("one")),
+                box(title = "Data table",
+                    view_dataUI("one"), width = 12)
+              )),
+      tabItem(tabName = "plot_2dics",
+              fluidRow(
+                box(title = "Plot 2 Dictionaries",
+                    plot_2DicUI("three"))
+              )),
+      tabItem(tabName = "target_collocations",
+              fluidRow(
+                box(title = "Target Collocations",
+                    target_collUI("two"))
+              )),
+      tabItem(
+        tabName = "plot_dics",
+        box(title =  "Change and Plot Dictionary",
+            plot_DicUI("one")),
+        box(
+          title = "Create Dictionary",
+          save_DicUI("one"),
+          collapsible = TRUE,
+          collapsed = TRUE
+        ),
+        box(
+          title = "Alter a dictionary",
+          alter_dictioUI("two"),
+          collapsible = TRUE
+        )
+      )
+    )
+  )
 )
 
 server <- function(input, output) {
   callModule(plot_Dic, "one")
-  callModule(plot_word, "one")
   callModule(save_Dic, "one")
   callModule(view_data, "one")
   callModule(select_dataset, "one")
