@@ -11,7 +11,6 @@ require(jsonlite)
 require(ndjson)
 require(shinyalert)
 
-
 options(stringsAsFactors = FALSE)
 pfad <- paste0(getwd(), "/Module/")
 source(paste0(pfad, "plot_Dic_modul.R"), local = TRUE)
@@ -25,6 +24,7 @@ source(paste0(pfad, "plot_by_sex_modul.R"), local = TRUE)
 source(paste0(pfad, "collocations_modul.R"), local = TRUE)
 source(paste0(pfad, "sentiment_modul.R"), local = TRUE)
 source(paste0(pfad, "tm_modul.R"), local = TRUE)
+source(paste0(pfad, "target_collocations_modul.R"), local = TRUE)
 
 ui <- dashboardPage(
   dashboardHeader(title = "Text Mining Tool"),
@@ -64,6 +64,11 @@ ui <- dashboardPage(
       tabName = "TM",
       icon = icon("topic_model")
     ),
+    menuItem(
+      "Target Collocation",
+      tabName = "target_collocations",
+      icon = icon("Target Coll")
+    ),
     menuItem("Data",
              tabName = "data",
              icon = icon("data"))
@@ -97,7 +102,7 @@ ui <- dashboardPage(
     tabItem(tabName = "collocations",
             fluidRow(
               box(title = "Search for Collocations",
-                  find_collocationUI("one"),width = 12)
+                  target_collUI("one"),width = 12)
             )),
     tabItem(tabName = "data",
             fluidRow(box(
@@ -108,6 +113,11 @@ ui <- dashboardPage(
             fluidRow(box(
               title = "Plot 2 Dictionaries",
               plot_2DicUI("three")
+            ))),
+    tabItem(tabName = "target_collocations",
+            fluidRow(box(
+              title = "Target Collocations",
+              target_collUI("two")
             ))),
     tabItem(
       tabName = "plot_dics",
@@ -140,7 +150,7 @@ server <- function(input, output) {
   callModule(find_collocation, "one")
   callModule(analyse_sentiment, "one")
   callModule(analyse_tm, "one")
-  
+  callModule(target_coll, "two")
 }
 
 shinyApp(ui = ui, server = server)

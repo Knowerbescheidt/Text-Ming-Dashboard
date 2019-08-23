@@ -1,5 +1,5 @@
 getwd()
-source(paste0(getwd(),"/Funktionen/target_collocation.R"),
+source(paste0(getwd(), "/Funktionen/target_collocation.R"),
        local = TRUE)
 
 target_collUI <- function(id) {
@@ -31,32 +31,32 @@ target_collUI <- function(id) {
       max = 100,
       step = 1,
       width = '100px'
-      ),
+    ),
     textInput(
-      ns("words"),
+      ns("target_word"),
       placeholder = "lower cases",
       label = "Word for Collocations",
       value = "Example",
       width = 600
     ),
-    )
-  }
-
-
-target_coll<- function(input, output, session) {
-  
-  
+    actionButton(ns("refresh_tc"), label = "Update Collocation"),
+    DTOutput(ns("target_coll_out"))
+  )
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
+target_coll <- function(input, output, session) {
+  target_coll_data <- eventReactive(input$refresh_tc, {
+    target_collocation(
+      words = input$target_word,
+      Token_object = Token_data(),
+      window_count = input$window_count,
+      min_n_target = input$min_n_target,
+      return_count = input$return_count
+    )
+  })
+  output$target_coll_out <-
+    DT::renderDataTable(target_coll_data())
+  
+  
+}

@@ -35,6 +35,7 @@ target_collocation <-
       head(tstat_key_word_subset, return_count)
       }
 
-
-target_collocation(guitar,Token_object = Token_data, min_n_target = 50)
-
+#Test der Funktion------------
+# table1 <- target_collocation("guitar",Token_object = Token_Test, min_n_target = 3)
+# str(table1)
+# class(table1)
