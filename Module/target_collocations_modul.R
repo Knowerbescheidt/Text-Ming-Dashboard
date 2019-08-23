@@ -1,7 +1,7 @@
-getwd()
 source(paste0(getwd(), "/Funktionen/target_collocation.R"),
        local = TRUE)
 
+#UI---------------------
 target_collUI <- function(id) {
   ns <- NS(id)
   tagList(
@@ -44,7 +44,7 @@ target_collUI <- function(id) {
   )
 }
 
-
+#Server----------------------------
 target_coll <- function(input, output, session) {
   target_coll_data <- eventReactive(input$refresh_tc, {
     target_collocation(
@@ -57,6 +57,4 @@ target_coll <- function(input, output, session) {
   })
   output$target_coll_out <-
     DT::renderDataTable(target_coll_data())
-  
-  
 }
