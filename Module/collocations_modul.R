@@ -7,7 +7,7 @@ source(paste0(getwd(),
 find_collocationUI <- function(id) {
   ns <- NS(id)
   tagList(
-    actionButton(ns("get_coll"), label = "Show Collocations"),
+    actionButton(ns("get_coll"), label = "Update Collocations"),
     numericInput(
       ns("coll_size"),
       label = "Size of the Collocation",
@@ -23,7 +23,8 @@ find_collocationUI <- function(id) {
       min = 10,
       max = 300,
       value = 30,
-      step = 5
+      step = 5,
+      width = 700
       
     ),
     dataTableOutput(ns("coll_table"), width = 900)
@@ -41,4 +42,4 @@ find_collocation <- function(input, output, session) {
     return(col_dataframe)
   })
   output$coll_table <- renderDataTable(col_datatable())
-  }
+}

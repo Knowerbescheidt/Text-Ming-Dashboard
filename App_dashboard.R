@@ -117,7 +117,7 @@ ui <- dashboardPage(
               )),
       tabItem(
         tabName = "plot_dics",
-        box(title =  "Change and Plot Dictionary",
+        box(title =  "Plot Dictionary",
             plot_DicUI("one")),
         box(
           title = "Create Dictionary",
@@ -126,7 +126,7 @@ ui <- dashboardPage(
           collapsed = TRUE
         ),
         box(
-          title = "Alter a dictionary",
+          title = "Alter Dictionary",
           alter_dictioUI("two"),
           collapsible = TRUE
         )
