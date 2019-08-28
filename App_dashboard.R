@@ -5,6 +5,7 @@ require(DT)
 require(rhandsontable)
 require(readtext)
 require(quanteda)
+
 library(anytime)
 require(ggplot2)
 require(jsonlite)
@@ -15,9 +16,12 @@ require(lubridate) #wird in tm Funktion gebraucht
 require(readtext)
 require(openxlsx)
 
+
 options(stringsAsFactors = FALSE)
 pfad <- paste0(getwd(), "/Module/")
 source(paste0(pfad, "plot_Dic_modul.R"), local = TRUE)
+
+
 source(paste0(pfad, "save_Dic_modul.R"), local = TRUE)
 source(paste0(pfad, "view_data_modul.R"), local = TRUE)
 source(paste0(pfad, "select_dataset_modul.R"), local = TRUE)
@@ -27,6 +31,7 @@ source(paste0(pfad, "plot_by_sex_modul.R"), local = TRUE)
 source(paste0(pfad, "collocations_modul.R"), local = TRUE)
 source(paste0(pfad, "sentiment_modul.R"), local = TRUE)
 source(paste0(pfad, "tm_modul.R"), local = TRUE)
+
 source(paste0(pfad, "target_collocations_modul.R"), local = TRUE)
 
 ui <- dashboardPage(
@@ -133,6 +138,7 @@ ui <- dashboardPage(
       )
     )
   )
+
 )
 
 server <- function(input, output) {
@@ -146,8 +152,10 @@ server <- function(input, output) {
   callModule(find_collocation, "one")
   callModule(analyse_sentiment, "one")
   callModule(analyse_tm, "one")
+
   callModule(target_coll, "two")
   session$onSessionEnded(stopApp)
+
 }
 
 shinyApp(ui = ui, server = server)
