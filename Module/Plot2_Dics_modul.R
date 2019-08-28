@@ -1,6 +1,3 @@
-require(shiny)
-require(shinyalert)
-
 source(
   paste0(getwd(),
     "/Funktionen/",
@@ -9,7 +6,7 @@ source(
   local = TRUE
 )
 
-
+#UI----------------------------
 plot_2DicUI <- function(id, dictionary_id) {
   ns <- NS(id)
   tagList(
@@ -28,13 +25,13 @@ plot_2DicUI <- function(id, dictionary_id) {
       label = "Intervall",
       choices = list(month = "month", year = "year")
     ),
-    actionButton(ns("refresh2"), label = "Update Plot"),
+    actionButton(ns("refresh_plot_data"), label = "Update Plot"),
     actionButton(ns("refresh_2dictionaries"), label = "Update Dictionaries"),
     plotlyOutput(ns("bar_chart_dicts"))
     )
 }
 
-
+#Server--------------------------------
 plot_2Dic <- function(input, output, session) {
   vec_name_obj <- eventReactive(input$refresh_2dictionaries, {
     liste <-
@@ -66,9 +63,7 @@ plot_2Dic <- function(input, output, session) {
                    choices = vec_name_obj()
                  )
                })
-  
-
-  plot_data <- eventReactive(input$refresh2, {
+  plot_data <- eventReactive(input$refresh_plot_data, {
     plot_dictionaries(
       dfm = dfm_data(),
       dictio_1 = import_excel(
@@ -83,6 +78,4 @@ plot_2Dic <- function(input, output, session) {
   })
   
   output$bar_chart_dicts <- renderPlotly({plot_data()})
-
 }
-

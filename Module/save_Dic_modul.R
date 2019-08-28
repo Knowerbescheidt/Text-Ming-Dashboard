@@ -1,7 +1,4 @@
-require(shiny)
-require(DT)
-require(rhandsontable)
-
+#UI----------------------------
 save_DicUI <- function(id, dictionary_id) {
   ns <- NS(id)
   tagList(
@@ -9,16 +6,15 @@ save_DicUI <- function(id, dictionary_id) {
     textInput(
       ns("dictio_name"),
       placeholder = "Name",
-      label = "Choose an ID for your Dictionary",
-      value = "ID",
+      label = "Choose a name for your Dictionary",
+      value = "Example",
       width = 500
     ),
     actionButton(ns("save_button"), "Save")
   )
 }
 
-
-
+#Server-----------------
 save_Dic <-  function(input, output, session) {
   output$table <- renderRHandsontable({
     rhandsontable(data_frame_bsp)

@@ -1,24 +1,15 @@
-require(shiny)
-require(data.table)
-source(
-  paste0(getwd(),
-    "/Funktionen/",
-    "collocations.R"),
-  local = TRUE
-)
-source(
-  paste0(getwd(),
-         "/Funktionen/",
-         "data_prep_dfm.R"),
-  local = TRUE
-)
+source(paste0(getwd(),
+              "/Funktionen/",
+              "collocations.R"),
+       local = TRUE)
 
+#UI-----------------------------
 find_collocationUI <- function(id) {
   ns <- NS(id)
   tagList(
-    actionButton(ns("get_coll"), label = "Show Collocations"),
+    actionButton(ns("get_coll"), label = "Update Collocations"),
     numericInput(
-      ns("size"),
+      ns("coll_size"),
       label = "Size of the Collocation",
       min = 2,
       value = 3,
@@ -32,23 +23,23 @@ find_collocationUI <- function(id) {
       min = 10,
       max = 300,
       value = 30,
-      step = 5
+      step = 5,
+      width = 700
       
     ),
     dataTableOutput(ns("coll_table"), width = 900)
-    
   )
 }
 
+#Server-------------------------
 find_collocation <- function(input, output, session) {
   col_datatable <- eventReactive(input$get_coll, {
     col_dataframe <- find_coll(
-      Token_object = Token_data,
-      size = input$size,
+      Token_object = Token_data(),
+      size = input$coll_size,
       min_count = input$min_count
     )
     return(col_dataframe)
   })
   output$coll_table <- renderDataTable(col_datatable())
-  
 }

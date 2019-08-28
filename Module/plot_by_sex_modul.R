@@ -1,6 +1,3 @@
-require(shiny)
-require(shinyalert)
-
 source(
   paste0(getwd(),
     "/Funktionen/",
@@ -9,11 +6,12 @@ source(
   local = TRUE
 )
 
+#UI-----------------
 plot_by_sexUI <- function(id, dictionary_id) {
   ns <- NS(id)
   tagList(box(
     textInput(
-      ns("word"),
+      ns("word_ts"),
       placeholder = "lower cases",
       label = "Word for timeseries",
       value = "Beispiel",
@@ -24,7 +22,7 @@ plot_by_sexUI <- function(id, dictionary_id) {
       label = "Intervall",
       choices = list(month = "month", year = "year")
     ),
-    actionButton(ns("refresh_plot"), label = "Update Plot"),
+    actionButton(ns("refresh_metadata_plot"), label = "Update Plot"),
     radioButtons(
       ns("radio_button"),
       label = "Select your Metadata",
@@ -35,11 +33,12 @@ plot_by_sexUI <- function(id, dictionary_id) {
   ))
 }
 
+#Server-----------------
 plot_by_sex <- function(input, output, session) {
-  word_plot <- eventReactive(input$refresh_plot, {
+  word_plot <- eventReactive(input$refresh_metadata_plot, {
     if (input$radio_button == 0) {
       pa <- plotte_word_sex(
-        word = input$word,
+        word = input$word_ts,
         dfm_input = dfm_data(),
         intervall = input$intervall,
         group_by_sex = FALSE
@@ -48,7 +47,7 @@ plot_by_sex <- function(input, output, session) {
     }
     else if (input$radio_button == 1) {
       pa <- plotte_word_sex(
-        word = input$word,
+        word = input$word_ts,
         dfm_input = dfm_data(),
         intervall = input$intervall,
         group_by_sex = TRUE

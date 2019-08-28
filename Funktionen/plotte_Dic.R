@@ -1,19 +1,17 @@
-options(stringsAsFactors = F)
 
-require(readtext)
-require(plotly)
 
 plotte_dictio <-
   function(dictionary_input , dfm_input , intervall = "year") {
     #Missing values are replaced by a "-"--------
-    missing_values <- dictionary_input[[1]]==""
+    missing_values <- dictionary_input[[1]] == ""
     dictionary_input[[1]][missing_values] <- "-"
     #year----
     if ("year" == intervall) {
       dfm_runtime <- dfm_group(dfm_input, groups = "year")
       char_title <- "Word frequency by year"
       data_runtime <-
-        convert(dfm_lookup(dfm_runtime, dictionary = dictionary_input), to = "data.frame")
+        convert(dfm_lookup(dfm_runtime, dictionary = dictionary_input),
+                to = "data.frame")
       return(
         plot_ly(
           data_runtime,
@@ -29,7 +27,8 @@ plotte_dictio <-
       dfm_runtime <- dfm_group(dfm_input, groups = "month")
       char_title <- "Word frequency by month"
       data_runtime <-
-        convert(dfm_lookup(dfm_runtime, dictionary = dictionary_input), to = "data.frame")
+        convert(dfm_lookup(dfm_runtime, dictionary = dictionary_input),
+                to = "data.frame")
       return(
         plot_ly(
           data_runtime,
@@ -38,12 +37,11 @@ plotte_dictio <-
           type = "bar",
           name = char_title
         )
-      )      
+      )
     }
   }
 
 # Test-----------------------
-# #
 # dictio_arbeit <- import_excel("Dictionary Schoko2.xlsx")
 # dfm_data <- data_prep_dfm()
 # dfm_arbeit <- dfm_data

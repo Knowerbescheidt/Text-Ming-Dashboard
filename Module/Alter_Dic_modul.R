@@ -1,6 +1,5 @@
-#Hier könnte man für den /Daten/Dictionaries/ Pfad auch eine Variable anlegen, die dann immer wieder aufgerufen wird
-#Der wird nämlich sehr oft aufgerufen ;)
 
+#UI---------------------------------
 alter_dictioUI <- function(id, dictionary_id) {
   ns <- NS(id)
   tagList(
@@ -18,15 +17,15 @@ alter_dictioUI <- function(id, dictionary_id) {
   )
 }
 
+#Server-------------------------------
 alter_dictio <- function(input, output, session) {
   #Saving Dictionary----------
   observeEvent(input$save_dic, {
     write.xlsx(
       hot_to_r(input$display_dic),
       file = paste0(getwd(),
-        "/Daten/Dictionaries/",
-        input$dictio
-      )
+                    "/Daten/Dictionaries/",
+                    input$dictio)
     )
   })
   
@@ -34,7 +33,8 @@ alter_dictio <- function(input, output, session) {
   dic_view <-
     eventReactive(input$show_dic, {
       rhandsontable(read.xlsx(
-        paste0(getwd(),
+        paste0(
+          getwd(),
           "/Daten/Dictionaries/",
           as.character(input$dictio)
         ),
@@ -49,8 +49,7 @@ alter_dictio <- function(input, output, session) {
   vec_name_obj <- eventReactive(input$refresh_dictionaries, {
     liste <-
       import_excels(list.files(paste0(getwd(),
-        "/Daten/Dictionaries/"
-      )))
+                                      "/Daten/Dictionaries/")))
     vec_name <- c()
     i <- 1
     for (i in 1:length(liste)) {
@@ -72,12 +71,11 @@ alter_dictio <- function(input, output, session) {
   
   #refresh dictionaries Error---------------
   observeEvent(input$refresh, {
-    if (file.exists(
-      paste0(getwd(),
-        "/Daten/Dictionaries/",
-        as.character(input$dictio)
-      )
-    ) == FALSE) {
+    if (file.exists(paste0(
+      getwd(),
+      "/Daten/Dictionaries/",
+      as.character(input$dictio)
+    )) == FALSE) {
       shinyalert(title = "Error 404",
                  text = "Updaten Sie die Dictionaries!",
                  timer = 2000)
@@ -86,22 +84,20 @@ alter_dictio <- function(input, output, session) {
   
   #delete Dictionaries-----------------------
   observeEvent(input$delete_dictionary, {
-    if (file.exists(
-      paste0(getwd(),
+    if (file.exists(paste0(
+      getwd(),
+      "/Daten/Dictionaries/",
+      as.character(input$dictio)
+    )) == TRUE) {
+      file.remove(paste0(
+        getwd(),
         "/Daten/Dictionaries/",
         as.character(input$dictio)
-      )
-    ) == TRUE) {
-      file.remove(
-        paste0(getwd(),
-          "/Daten/Dictionaries/",
-          as.character(input$dictio)
-        )
-      )
+      ))
     }
     if (file.exists(paste0("/Daten/Dictionaries/", as.character(input$dictio))) == FALSE) {
       print("Wurde gelöscht")
     }
   })
-
+  
 }

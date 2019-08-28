@@ -1,8 +1,6 @@
-require(shiny)
+source(paste0(getwd(), "/Funktionen/tm.R"),local = TRUE)
 
-source(paste0(getwd(), "/Funktionen/tm.R"),
-       local = TRUE)
-
+#UI-------------------
 analyse_tmUI <- function(id) {
   ns <- NS(id)
   tagList(
@@ -54,13 +52,11 @@ analyse_tmUI <- function(id) {
     ),
     actionButton(ns("start"), label = "Apply"),
     DT::dataTableOutput(ns("datatable_r"))
-    #DT::dataTableOutput(ns("datatable_test"))
-    
   )
   
 }
 
-
+#Server----------------
 analyse_tm <- function(input, output, session) {
   datatable_r <- eventReactive(input$start, {
       a <- tm_func(

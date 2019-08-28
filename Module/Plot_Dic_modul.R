@@ -1,6 +1,3 @@
-require(shiny)
-require(shinyalert)
-
 source(
   paste0(getwd(),
     "/Funktionen/",
@@ -100,3 +97,4 @@ plot_Dic <- function(input, output, session) {
     }
   })
 }
+

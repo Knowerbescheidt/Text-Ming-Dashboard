@@ -5,9 +5,23 @@ source(
   ),
   local = TRUE
 )
+source(
+  paste0(getwd(),
+         "/Funktionen/",
+         "data_prep_token.R"
+  ),
+  local = TRUE
+)
+source(
+  paste0(getwd(),
+         "/Funktionen/",
+         "data_prep_corpus.R"
+  ),
+  local = TRUE
+)
 
-
-select_datasetUI <- function(id) {
+#UI------------------------------
+select_datasetsetUI <- function(id) {
   ns <- NS(id)
   tagList(
     selectInput(
@@ -15,13 +29,13 @@ select_datasetUI <- function(id) {
       label = "Data set",
       choices = c("Press Update Datasets")
     ),
-    actionButton(ns("refresh_data"), label = "Update Datasets"),
-    actionButton(ns("select_data"), label = "Select Dataset")
+    actionButton(ns("refresh_dataset"), label = "Update Datasets"),
+    actionButton(ns("select_dataset"), label = "Select Dataset")
   )
 }
-
-select_dataset <-  function(input, output, session) {
-  dfm_data <- eventReactive(input$select_data, {
+#Server--------------------------------
+select_datasetset <-  function(input, output, session) {
+  dfm_data <- eventReactive(input$select_dataset, {
     data_prep_dfm(
       paste0(getwd(),
         "/Daten/Amazon_data/",
@@ -29,20 +43,47 @@ select_dataset <-  function(input, output, session) {
       )
     )
   })
-  observeEvent(input$select_data, {
-    #assign dfm_data zu dfm_data
+  observeEvent(input$select_dataset, {
     assign(x = "dfm_data",
            value = dfm_data,
            envir = globalenv())
   })
-  #refresh names-----------
+  Token_data <- eventReactive(input$select_dataset, {
+    data_prep_token(
+      paste0(getwd(),
+             "/Daten/Amazon_data/",
+             input$Data_set
+      )
+    )
+  })
+  observeEvent(input$select_dataset, {
+    assign(x = "Token_data",
+           value = Token_data,
+           envir = globalenv())
+  })
   
-  names_vec <- eventReactive(input$refresh_data, {
+  
+  corpus_data <- eventReactive(input$select_dataset, {
+    data_prep_corpus(
+      paste0(getwd(),
+             "/Daten/Amazon_data/",
+             input$Data_set
+      )
+    )
+  })
+  observeEvent(input$select_dataset, {
+    assign(x = "corpus_data",
+           value = corpus_data,
+           envir = globalenv())
+  })
+    #refresh names-----------
+  
+  names_vec <- eventReactive(input$refresh_dataset, {
     liste <-
       list.files(paste0(getwd(), "/Daten/Amazon_data/"))
     return(liste)
   })
-  observeEvent(input$refresh_data,
+  observeEvent(input$refresh_dataset,
                {
                  updateSelectInput(
                    session = session,
@@ -54,47 +95,3 @@ select_dataset <-  function(input, output, session) {
   
 }
 
-#Alter Code------------------
-#
-#
-# select_datasetUI <- function(id) {
-#   ns <- NS(id)
-#   tagList(
-#     selectInput(
-#       ns("Data_set"),
-#       label = "Data set",
-#       choices = c("Press sie Update Data")
-#     ),
-#     actionButton(ns("refresh_data"), label = "Update Data"),
-#     actionButton(ns("select_data"), label = "Select Data")
-#
-#   )
-# }
-#
-# select_dataset <-  function(input, output, session) {
-#   dfm_data <- eventReactive(input$select_data, {
-#     data_prep_dfm(
-#       paste0(
-#         "C:/Users/Jani/Documents/R Hausaufgabe/Daten/Amazon_data/",
-#         input$Data_set
-#       )
-#     )
-#   })
-#
-#
-#   names_vec <- eventReactive(input$refresh_data, {
-#     liste <-
-#       list.files("C:/Users/Jani/Documents/R Hausaufgabe/Daten/Amazon_data/")
-#     return(liste)
-#   })
-#
-#   observeEvent(input$refresh_data,
-#                {
-#                  updateSelectInput(
-#                    session = session,
-#                    inputId = "Data_set",
-#                    label = "Data set",
-#                    choices = names_vec()
-#                  )
-#                })
-# }

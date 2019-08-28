@@ -1,15 +1,12 @@
-require(quanteda)
-source(
-  paste0(getwd(),
-    "/Funktionen/",
-    "data_prep_dfm.R"),
-  local = TRUE
-  )
+source(paste0(getwd(),
+              "/Funktionen/",
+              "data_prep_dfm.R"),
+       local = TRUE)
 
-find_coll <- function(Token_object, size, min_count) {
+find_coll <- function(Token_object = Token_data , size, min_count) {
   if (min_count > 5) {
     coll_runtime <- tokens_select(
-      Token_data,
+      Token_object,
       pattern = '^[a-z]',
       valuetype = 'regex',
       case_insensitive = FALSE,
@@ -18,7 +15,7 @@ find_coll <- function(Token_object, size, min_count) {
     coll_stat <-
       textstat_collocations(coll_runtime, min_count = min_count, size = size)
     coll_stat <-
-      coll_stat[order(coll_stat$count, decreasing = TRUE),]
+      coll_stat[order(coll_stat$count, decreasing = TRUE), ]
     coll_df <-
       data.frame(
         collocation_name = coll_stat[[1]],
