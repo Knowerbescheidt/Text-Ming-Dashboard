@@ -63,12 +63,11 @@ plot_Dic <- function(input, output, session) {
   
   #refresh dictionaries Error---------------
   observeEvent(input$refresh, {
-    if (file.exists(
+    if (!file.exists(
       paste0(getwd(),
         "/Daten/Dictionaries/",
         as.character(input$dictio)
-      )
-    ) == FALSE) {
+    ))) {
       shinyalert(title = "Error 404",
                  text = "Updaten Sie die Dictionaries!",
                  timer = 2000)
@@ -91,8 +90,7 @@ plot_Dic <- function(input, output, session) {
       paste0(getwd(),
         "/Daten/Dictionaries/",
         as.character(input$dictio)
-      )
-    ) == TRUE) {
+      ))) {
       dictionary_runtime()
     }
   })

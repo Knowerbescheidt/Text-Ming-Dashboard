@@ -141,7 +141,7 @@ ui <- dashboardPage(
 
 )
 
-server <- function(input, output) {
+server <- function(input, output, session) {
   callModule(plot_Dic, "one")
   callModule(save_Dic, "one")
   callModule(view_data, "one")
@@ -152,7 +152,6 @@ server <- function(input, output) {
   callModule(find_collocation, "one")
   callModule(analyse_sentiment, "one")
   callModule(analyse_tm, "one")
-
   callModule(target_coll, "two")
   session$onSessionEnded(stopApp)
 
