@@ -5,9 +5,8 @@ save_DicUI <- function(id, dictionary_id) {
     rHandsontableOutput(ns("table")),
     textInput(
       ns("dictio_name"),
-      placeholder = "Name",
       label = "Choose a name for your Dictionary",
-      value = "Example",
+      placeholder = "Example",
       width = 500
     ),
     actionButton(ns("save_button"), "Save")
@@ -28,7 +27,7 @@ save_Dic <-  function(input, output, session) {
       hot_to_r(input$table),
       file = paste0(
         getwd(),
-        "Daten/Dictionaries/Dictionary ",
+        "/Daten/Dictionaries/Dictionary ",
         input$dictio_name  ,
         ".xlsx"
       ),
