@@ -21,7 +21,7 @@ source(
 )
 
 #UI------------------------------
-select_datasetsetUI <- function(id) {
+select_datasetUI <- function(id) {
   ns <- NS(id)
   tagList(
     selectInput(
@@ -34,7 +34,7 @@ select_datasetsetUI <- function(id) {
   )
 }
 #Server--------------------------------
-select_datasetset <-  function(input, output, session) {
+select_dataset <-  function(input, output, session) {
   dfm_data <- eventReactive(input$select_dataset, {
     data_prep_dfm(
       paste0(getwd(),
