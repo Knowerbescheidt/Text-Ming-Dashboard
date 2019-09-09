@@ -59,21 +59,7 @@ plot_Dic <- function(input, output, session) {
                    choices = vec_name_obj()
                  )
                })
-  
 
-  #refresh dictionaries Error---------------
-  observeEvent(input$refresh, {
-    if (!file.exists(
-      paste0(getwd(),
-        "/Daten/Dictionaries/",
-        as.character(input$dictio)
-    ))) {
-      shinyalert(title = "Error 404",
-                 text = "Updaten Sie die Dictionaries!",
-                 timer = 2000)
-    }
-  })
-  
   #Data f?r barchart------------------------
   dictionary_runtime <-
     eventReactive(input$refresh, {
