@@ -16,7 +16,7 @@ target_collUI <- function(id) {
     ),
     sliderInput(
       ns("min_n_target"),
-      label = "Minimum Number of Window Occurences",
+      label = "Minimum Number of Window Occurrences",
       min = 5,
       max = 100,
       step = 5,
