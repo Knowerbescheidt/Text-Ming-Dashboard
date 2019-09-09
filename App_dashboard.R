@@ -37,41 +37,41 @@ ui <- dashboardPage(
     sidebarMenu(
       menuItem("Data",
                tabName = "data",
-               icon = icon("data")),
+               icon = icon("database")),
       menuItem(
         "Timeseries Words",
         tabName = "Metadata",
-        icon = icon("plot_sex")
+        icon = icon("history")
       ),
       menuItem(
         "Timeseries Dictionaries",
         tabName = "plot_dics",
-        icon = icon("plot_dics")
+        icon = icon("book")
       ),
       menuItem(
         "Compare Dictionaries",
         tabName = "plot_2dics",
-        icon = icon("plot_2dics")
+        icon = icon("book")
       ),
       menuItem(
         "Collocations",
         tabName = "collocations",
-        icon = icon("collocations")
+        icon = icon("text-size", lib = "glyphicon")
       ),
       menuItem(
         "Target Collocation",
         tabName = "target_collocations",
-        icon = icon("Target Coll")
+        icon = icon("bullseye")
       ),
       menuItem(
         "Sentiment Analysis",
         tabName = "Sentiment",
-        icon = icon("sentiment")
+        icon = icon("smile")
       ),
       menuItem(
         "Topic Model",
         tabName = "TM",
-        icon = icon("topic_model")
+        icon = icon("project-diagram")
       )
     )
   ),
@@ -138,7 +138,7 @@ ui <- dashboardPage(
 
 )
 
-server <- function(input, output) {
+server <- function(input, output, session) {
   callModule(plot_Dic, "one")
   callModule(save_Dic, "one")
   callModule(view_data, "one")
