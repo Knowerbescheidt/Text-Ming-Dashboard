@@ -30,8 +30,7 @@ plot_DicUI <- function(id, dictionary_id) {
     ),
     actionButton(ns("refresh"), label = "Update Plot"),
     actionButton(ns("refresh_dictionaries"), label = "Update Dictionaries"),
-    plotlyOutput(ns("bar_chart_dict")),
-    useShinyalert()
+    plotlyOutput(ns("bar_chart_dict"))
   )
 }
 
@@ -60,20 +59,6 @@ plot_Dic <- function(input, output, session) {
                    choices = vec_name_obj()
                  )
                })
-  
-  #refresh dictionaries Error---------------
-  observeEvent(input$refresh, {
-    if (file.exists(
-      paste0(getwd(),
-        "/Daten/Dictionaries/",
-        as.character(input$dictio)
-      )
-    ) == FALSE) {
-      shinyalert(title = "Error 404",
-                 text = "Updaten Sie die Dictionaries!",
-                 timer = 2000)
-    }
-  })
   
   #Data f?r barchart------------------------
   dictionary_runtime <-

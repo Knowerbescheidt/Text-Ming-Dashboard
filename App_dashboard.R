@@ -150,7 +150,7 @@ server <- function(input, output) {
   callModule(analyse_sentiment, "one")
   callModule(analyse_tm, "one")
   callModule(target_coll, "two")
-  session$onSessionEnded(stopApp)
+  #session$onSessionEnded(stopApp)
 
 }
 
