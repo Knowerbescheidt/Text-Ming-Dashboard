@@ -1,5 +1,4 @@
 
-
 #Import Excel Funktion-------------
 import_excel <- function(filename) {
   data_excel <-
@@ -39,3 +38,4 @@ import_excels <- function(liste) {
   }
   return(dictio_master)
 }
+

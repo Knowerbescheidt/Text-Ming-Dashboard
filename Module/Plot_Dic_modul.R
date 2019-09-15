@@ -38,9 +38,9 @@ plot_Dic <- function(input, output, session) {
   #Refresh list of dictionaries and names---------------------------
   vec_name_obj <- eventReactive(input$refresh_dictionaries, {
     liste <-
-      import_excels(list.files(paste0(
+      import_excels(as.list(list.files(paste0(
         getwd(), "/Daten/Dictionaries/"
-      )))
+      ))))
     vec_name <- c()
     i <- 1
     for (i in 1:length(liste)) {
