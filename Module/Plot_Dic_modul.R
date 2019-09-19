@@ -30,8 +30,7 @@ plot_DicUI <- function(id, dictionary_id) {
     ),
     actionButton(ns("refresh"), label = "Update Plot"),
     actionButton(ns("refresh_dictionaries"), label = "Update Dictionaries"),
-    plotlyOutput(ns("bar_chart_dict")),
-    useShinyalert()
+    plotlyOutput(ns("bar_chart_dict"))
   )
 }
 
@@ -39,9 +38,9 @@ plot_Dic <- function(input, output, session) {
   #Refresh list of dictionaries and names---------------------------
   vec_name_obj <- eventReactive(input$refresh_dictionaries, {
     liste <-
-      import_excels(list.files(paste0(
+      import_excels(as.list(list.files(paste0(
         getwd(), "/Daten/Dictionaries/"
-      )))
+      ))))
     vec_name <- c()
     i <- 1
     for (i in 1:length(liste)) {
@@ -60,20 +59,7 @@ plot_Dic <- function(input, output, session) {
                    choices = vec_name_obj()
                  )
                })
-  
-  #refresh dictionaries Error---------------
-  observeEvent(input$refresh, {
-    if (!file.exists(
-      paste0(getwd(),
-        "/Daten/Dictionaries/",
-        as.character(input$dictio)
-    ))) {
-      shinyalert(title = "Error 404",
-                 text = "Updaten Sie die Dictionaries!",
-                 timer = 2000)
-    }
-  })
-  
+
   #Data f?r barchart------------------------
   dictionary_runtime <-
     eventReactive(input$refresh, {

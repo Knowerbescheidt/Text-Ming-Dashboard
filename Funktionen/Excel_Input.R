@@ -1,5 +1,4 @@
 
-
 #Import Excel Funktion-------------
 import_excel <- function(filename) {
   data_excel <-
@@ -8,7 +7,9 @@ import_excel <- function(filename) {
              "/Daten/Dictionaries/",
              filename),
       sheet = 1,
-      cols = 1
+      cols = 1,colNames = FALSE, 
+      skipEmptyRows = TRUE,
+      rowNames = FALSE
     )
   print(typeof(data_excel))
   print(data_excel)
@@ -29,8 +30,12 @@ import_excels <- function(liste) {
                "/Daten/Dictionaries/",
                file = name),
         sheet = 1,
-        cols = 1
-      )
+        cols = 1,
+        colNames = FALSE,
+        skipEmptyRows = TRUE,
+        rowNames = FALSE,
+        startRow = 1
+        )
     list_excel <- list(data_excel[, 1])
     names(list_excel) <- name
     dictio_master[[i]] <- dictionary(list_excel)

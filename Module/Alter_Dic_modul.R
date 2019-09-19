@@ -46,7 +46,7 @@ alter_dictio <- function(input, output, session) {
   
   output$display_dic <- renderRHandsontable(dic_view())
   
-  vec_name_obj <- eventReactive(input$refresh_dictionaries, {
+  vec_name_obj2 <- eventReactive(input$refresh_dictionaries, {
     liste <-
       import_excels(list.files(paste0(getwd(),
                                       "/Daten/Dictionaries/")))
@@ -65,22 +65,9 @@ alter_dictio <- function(input, output, session) {
                    session = session,
                    inputId = "dictio",
                    label = "Dictionaries",
-                   choices = vec_name_obj()
+                   choices = vec_name_obj2()
                  )
                })
-  
-  #refresh dictionaries Error---------------
-  observeEvent(input$refresh, {
-    if (file.exists(paste0(
-      getwd(),
-      "/Daten/Dictionaries/",
-      as.character(input$dictio)
-    )) == FALSE) {
-      shinyalert(title = "Error 404",
-                 text = "Updaten Sie die Dictionaries!",
-                 timer = 2000)
-    }
-  })
   
   #delete Dictionaries-----------------------
   observeEvent(input$delete_dictionary, {

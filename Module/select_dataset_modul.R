@@ -38,7 +38,7 @@ select_dataset <-  function(input, output, session) {
   dfm_data <- eventReactive(input$select_dataset, {
     data_prep_dfm(
       paste0(getwd(),
-        "/Daten/Amazon_data/",
+        "/Daten/Text_data/",
         input$Data_set
       )
     )
@@ -51,7 +51,7 @@ select_dataset <-  function(input, output, session) {
   Token_data <- eventReactive(input$select_dataset, {
     data_prep_token(
       paste0(getwd(),
-             "/Daten/Amazon_data/",
+             "/Daten/Text_data/",
              input$Data_set
       )
     )
@@ -66,7 +66,7 @@ select_dataset <-  function(input, output, session) {
   corpus_data <- eventReactive(input$select_dataset, {
     data_prep_corpus(
       paste0(getwd(),
-             "/Daten/Amazon_data/",
+             "/Daten/Text_data/",
              input$Data_set
       )
     )
@@ -80,7 +80,7 @@ select_dataset <-  function(input, output, session) {
   
   names_vec <- eventReactive(input$refresh_dataset, {
     liste <-
-      list.files(paste0(getwd(), "/Daten/Amazon_data/"))
+      list.files(paste0(getwd(), "/Daten/Text_data/"))
     return(liste)
   })
   observeEvent(input$refresh_dataset,
