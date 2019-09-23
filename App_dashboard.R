@@ -16,18 +16,18 @@ require(openxlsx)
 
 
 options(stringsAsFactors = FALSE)
-pfad <- paste0(getwd(), "/Module/")
-source(paste0(pfad, "plot_Dic_modul.R"), local = TRUE)
-source(paste0(pfad, "save_Dic_modul.R"), local = TRUE)
-source(paste0(pfad, "view_data_modul.R"), local = TRUE)
-source(paste0(pfad, "select_dataset_modul.R"), local = TRUE)
-source(paste0(pfad, "alter_Dic_modul.R"), local = TRUE)
-source(paste0(pfad, "plot2_Dics_modul.R"), local = TRUE)
-source(paste0(pfad, "plot_by_sex_modul.R"), local = TRUE)
-source(paste0(pfad, "collocations_modul.R"), local = TRUE)
-source(paste0(pfad, "sentiment_modul.R"), local = TRUE)
-source(paste0(pfad, "tm_modul.R"), local = TRUE)
-source(paste0(pfad, "target_collocations_modul.R"), local = TRUE)
+
+source("Module/plot_Dic_modul.R")
+source("Module/save_Dic_modul.R")
+source("Module/view_data_modul.R")
+source("Module/select_dataset_modul.R")
+source("Module/alter_Dic_modul.R")
+source("Module/plot2_Dics_modul.R")
+source("Module/plot_by_sex_modul.R")
+source("Module/collocations_modul.R")
+source("Module/sentiment_modul.R")
+source("Module/tm_modul.R")
+source("Module/target_collocations_modul.R")
 
 ui <- dashboardPage(
   dashboardHeader(title = "Text Mining Tool"),
@@ -148,7 +148,7 @@ server <- function(input, output, session) {
   callModule(analyse_sentiment, "one")
   callModule(analyse_tm, "one")
   callModule(target_coll, "two")
-  #session$onSessionEnded(stopApp)
+  session$onSessionEnded(stopApp)
 
 }
 

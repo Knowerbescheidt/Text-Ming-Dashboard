@@ -3,11 +3,10 @@
 import_excel <- function(filename) {
   data_excel <-
     read.xlsx(
-      paste0(getwd(),
-             "/Daten/Dictionaries/",
-             filename),
+      paste0("Daten/Dictionaries/", filename),
       sheet = 1,
-      cols = 1,colNames = FALSE, 
+      cols = 1,
+      colNames = FALSE,
       skipEmptyRows = TRUE,
       rowNames = FALSE
     )
@@ -26,9 +25,7 @@ import_excels <- function(liste) {
     name <- liste[i]
     data_excel <-
       read.xlsx(
-        paste0(getwd(),
-               "/Daten/Dictionaries/",
-               file = name),
+        paste0("Daten/Dictionaries/", file = name),
         sheet = 1,
         cols = 1,
         colNames = FALSE,

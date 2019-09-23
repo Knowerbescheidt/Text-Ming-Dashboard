@@ -1,14 +1,11 @@
-source(paste0(getwd(),
-              "/Funktionen/",
-              "data_prep_dfm.R"),
-       local = TRUE)
+source("./Funktionen/data_prep_dfm.R")
 
-find_coll <- function(Token_object = Token_data , size, min_count) {
+find_coll <- function(Token_object = Token_data, size, min_count) {
   if (min_count > 5) {
     coll_runtime <- tokens_select(
       Token_object,
-      pattern = '^[a-z]',
-      valuetype = 'regex',
+      pattern = "^[a-z]",
+      valuetype = "regex",
       case_insensitive = FALSE,
       padding = TRUE
     )

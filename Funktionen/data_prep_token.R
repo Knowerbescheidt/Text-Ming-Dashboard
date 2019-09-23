@@ -1,6 +1,6 @@
 
 data_prep_token <-
-  function(pathway = paste0(getwd(), "/Daten/Amazon_data/Musical_Instruments_5.json")) {
+  function(pathway = "Daten/Amazon_data/Musical_Instruments_5.json") {
     data_amazon <- stream_in(pathway)
     
     #Umwandlung der Zeit in Jahr und dann dem Data Frame hinzugefuegt-------------------
@@ -14,7 +14,7 @@ data_prep_token <-
     Token_data_runtime <-
       tokens(
         corpus_data,
-        what = 'word',
+        what = "word",
         remove_numbers = TRUE,
         remove_symbols = TRUE,
         remove_punct = TRUE,
